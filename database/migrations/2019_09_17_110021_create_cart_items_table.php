@@ -15,17 +15,29 @@ class CreateCartItemsTable extends Migration
     {
         Schema::create('cart_items', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('cart_id')->unsigned();
-            $table->bigInteger('product_id')->unsigned();
+            $table->unsignedBigInteger('cart_id');
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('board_id');
             $table->integer('price')->unsigned();
             $table->integer('quantity')->unsigned();
-            $table->string('preview');
             $table->string('title');
 
             $table->timestamps();
 
-            $table->foreign('cart_id')->references('id')->on('carts')->onDelete('cascade');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('cart_id')
+                ->references('id')
+                ->on('carts')
+                ->onDelete('cascade');
+
+            $table->foreign('product_id')
+                ->references('id')
+                ->on('products')
+                ->onDelete('cascade');
+
+            $table->foreign('board_id')
+                ->references('id')
+                ->on('boards')
+                ->onDelete('cascade');
         });
     }
 
@@ -37,5 +49,9 @@ class CreateCartItemsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('cart_items');
+
+        Schema::create('carts', function (Blueprint $table) {
+            $table->dropForeign(['cart_id', 'product_id', 'board_id']);
+        });
     }
 }

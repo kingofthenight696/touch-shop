@@ -17,11 +17,11 @@ class CreateBoardsTable extends Migration
             $table->bigIncrements('id');
             $table->string('path');
             $table->unsignedBigInteger('author_id')->nullable();
-            $table->unsignedBigInteger('last_edited_id')->nullable();
+            $table->unsignedBigInteger('last_editor_id')->nullable();
             $table->timestamps();
 
             $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('last_edited_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('last_editor_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -35,7 +35,7 @@ class CreateBoardsTable extends Migration
         Schema::dropIfExists('boards');
 
         Schema::create('boards', function (Blueprint $table) {
-            $table->dropForeign(['author_id', 'last_edited_id']);
+            $table->dropForeign(['author_id', 'last_editor_id']);
         });
     }
 }
