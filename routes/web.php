@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(["namespace" => "FrontSide"], function () {
+    Route::get("/", "IndexController@index");
 });
+
+//Route::group(["namespace" => "AdminSide"], function () {
+//    Route::get("admin/", "IndexController@index");
+//});
