@@ -14,9 +14,9 @@ $factory->define(Product::class, function (Faker $faker, $attributes) {
     //TODO add coordinates format
 
     return [
-        'coordinates' => $attributes['coordinates'] ?? '',
+        'coordinates' => [],
         'title' => $title,
-        'description' => $faker->paragraph(random_int(2, 10)),
+        'description' => $faker->sentence(random_int(1, 5)),
         'price' => random_int(50, 99999),
         'board_id' => $attributes['board_id'],
     ];

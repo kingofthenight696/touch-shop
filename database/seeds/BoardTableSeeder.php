@@ -16,14 +16,15 @@ class BoardTableSeeder extends Seeder
     {
         //TODO add path format
         $editorId = User::adminRole()->first()->id;
-        factory(Board::class, 1)->create([
-            'path' => '',
-            'author_id' => $editorId,
-            'last_editor_id' => $editorId
-        ])->each(function ($board) {
-            factory(Product::class, 2)->create([
-                'board_id' => $board->id,
-            ]);
+
+        factory(Board::class, 2)->create(
+            [
+                'path' => '',
+                'author_id' => $editorId,
+                'last_editor_id' => $editorId
+            ]
+        )->each(function($board) {
+            factory(Product::class)->create(['board_id' => $board->id]);
         });
     }
 }

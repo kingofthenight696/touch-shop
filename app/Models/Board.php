@@ -24,4 +24,9 @@ class Board extends Model
         return $this->hasOne(User::class, 'last_editor_id');
     }
 
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
 }

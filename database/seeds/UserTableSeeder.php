@@ -14,10 +14,10 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         factory(User::class)->create([
-            'name' => config('credentials.test-admin.name'),
+            'name' => config('credentials.test_admin.name'),
             'role_id' => Role::where('name', Role::ADMIN_ROLE)->first()->id,
-            'email' => config('credentials.test-admin.email'),
-            'password' => bcrypt(config('credentials.test-admin.password')),
+            'email' => config('credentials.test_admin.email'),
+            'password' => bcrypt(config('credentials.test_admin.password')),
         ]);
     }
 }

@@ -15,13 +15,13 @@ class CreateBoardsTable extends Migration
     {
         Schema::create('boards', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('path');
+            $table->string('path')->nulllable();
             $table->unsignedBigInteger('author_id')->nullable();
             $table->unsignedBigInteger('last_editor_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('last_editor_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('author_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('last_editor_id')->references('id')->on('users')->onDelete('set null');
         });
     }
 
