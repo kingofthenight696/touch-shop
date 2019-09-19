@@ -4,15 +4,18 @@
 <title>Carousel Template · Bootstrap</title>
 
 <!-- Bootstrap core CSS -->
-<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" >
-<link href="{{ asset('css/tooltipster.css') }}" rel="stylesheet" >
-<link href="{{ asset('css/front-side/main.css') }}" rel="stylesheet" >
 
+<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" >
+<link href="{{ asset('fonts/fontawesome/css/all.min.css') }}" rel="stylesheet" >
+<link href="{{ asset('plugins/tooltipster/css/tooltipster.bundle.min.css') }}" rel="stylesheet">
+<link href="{{ asset('css/main.css') }}" rel="stylesheet" >
+
+<script src="{{asset('js/jquery.min.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 <script src="{{asset('js/panzoom.js')}}"></script>
-<script src="{{asset('js/tooltipster.js')}}"></script>
-<script src="{{asset('js/front-side/utils.js')}}"></script>
-<script src="{{asset('js/front-side/main.js')}}"></script>
+<script src="{{asset('plugins/tooltipster/js/tooltipster.bundle.min.js')}}"></script>
+<script src="{{asset('js/utils.js')}}"></script>
+<script src="{{asset('js/shelfshop.js')}}"></script>
 
 <style>
     .bd-placeholder-img {

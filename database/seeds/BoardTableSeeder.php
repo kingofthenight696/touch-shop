@@ -14,17 +14,20 @@ class BoardTableSeeder extends Seeder
      */
     public function run()
     {
-        //TODO add path format
         $editorId = User::adminRole()->first()->id;
 
-        factory(Board::class, 2)->create(
-            [
-                'path' => '',
-                'author_id' => $editorId,
-                'last_editor_id' => $editorId
-            ]
-        )->each(function($board) {
-            factory(Product::class)->create(['board_id' => $board->id]);
-        });
+        $images = ['shelf.jpg', 'shelf-low.jpg'];
+
+        foreach($images as $image){
+            Board::create(
+                [
+                'path' => 'shelf.jpg',
+                    'author_id' => $editorId,
+                    'last_editor_id' => $editorId
+                ]
+            )->each(function($board) {
+                factory(Product::class)->create(['board_id' => $board->id]);
+            });
+        }
     }
 }

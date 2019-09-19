@@ -10,6 +10,6 @@ class IndexController extends Controller
 {
     public function index()
     {
-        return view( 'index', Board::with('products')->get());
+        return view( 'pages.front-side.index', Board::with('products')->get());
     }
 }

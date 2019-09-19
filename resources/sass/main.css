@@ -1,0 +1,191 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+.cart{
+    width: 98%;
+    margin: 1%;
+    font-size: 20px;
+}
+
+/*region Elements  */
+
+.button{
+    display: inline-block;
+    color: #495057;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 6px 24px;
+    font-size: 12px;
+    line-height: 1.6;
+    border-radius: .25rem;
+    transition: color 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'Raleway', sans-serif;
+    text-decoration: none;
+}
+.button--green{
+    color: #fff;
+    background-color: #3ac47d;
+    border-color: #3ac47d;
+}
+.button--green:hover{
+    color: #fff;
+    background-color: #2e9d64;
+    border-color: #2b935e;
+}
+.button--ajax{
+    width: 75px;
+    display: flex;
+    justify-content: center;
+    height: 18px;
+    align-items: center;
+}
+.button--ajax img{
+    display: none;
+    width: 15px;
+    height: 15px;
+}
+.button--ajax-loading img{
+    display: block;
+}
+.button--ajax-loading span{
+    display: none;
+}
+
+.shelf{
+    width: 98%;
+    border: 6px solid black;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin: 1%;
+    position: relative;
+}
+.shelf__image img{
+    display: block;
+    width: 100%;
+}
+.shelf__zoom{
+    position: absolute;
+    right: 1%;
+    bottom: 4%;
+    color: white;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+}
+.shelf__zoom .shelf__zoom-button{
+    opacity: 0;
+    transition: .2s linear;
+    visibility: hidden;
+}
+.shelf__zoom--visible .shelf__zoom-button{
+    opacity: 0.8;
+    visibility: visible;
+}
+.shelf__zoom-button:active{
+    opacity: 1;
+}
+.shelf__zoom-minus{
+    cursor: pointer;
+    margin-top: 5px;
+    padding: 5px;
+}
+.shelf__zoom-plus{
+    cursor: pointer;
+    padding: 5px;
+}
+.shelf__products{
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+    animation: .3s linear;
+}
+.shelf__product{
+    position: absolute;
+    top: 8%;
+    left: 48%;
+    width: 1%;
+    height: 17%;
+    cursor: pointer;
+}
+.shelf__product:hover,
+.shelf__product--active{
+    border: 1px solid #2e9d64;
+}
+.tooltip_templates {
+    display: none;
+}
+.shelf__tooltip .tooltipster-box{
+    background: #ffffff;
+    border: 1px solid #777;
+    border-radius: 2px;
+}
+.shelf__tooltip.tooltipster-bottom .tooltipster-arrow-background {
+    border-bottom-color: #ffffff;
+}
+.shelf__tooltip.tooltipster-left .tooltipster-arrow-background {
+    border-left-color: #ffffff;
+}
+.shelf__tooltip.tooltipster-right .tooltipster-arrow-background {
+    border-right-color: #ffffff;
+}
+.shelf__tooltip.tooltipster-top .tooltipster-arrow-background {
+    border-top-color: #ffffff;
+}
+.shelf__tooltip__content{
+    color: #000000;
+    display: flex;
+    align-items: center;
+}
+.shelf__tooltip__action{
+    margin-left: 10px;
+}
+.shelf__tooltip__action .button{
+    width: 70px;
+}
+.shelf__tooltip__text{
+    padding: 3px 0 0 0;
+    font-size: 15px;
+    font-weight: 600;
+}
+.shelf__tooltip.tooltipster-top .tooltipster-arrow,
+.shelf__tooltip.tooltipster-bottom .tooltipster-arrow{
+    height: 9px;
+}
+.shelf__tooltip.tooltipster-left .tooltipster-arrow,
+.shelf__tooltip.tooltipster-right .tooltipster-arrow{
+    width: 9px;
+}
+.shelf__tooltip.tooltipster-bottom .tooltipster-arrow-background{
+    top: 1px;
+}
+.shelf__tooltip.tooltipster-top .tooltipster-arrow-background{
+    top: -1px;
+}
+.shelf__tooltip.tooltipster-right .tooltipster-arrow-background{
+    left: 1px;
+}
+.shelf__tooltip.tooltipster-left .tooltipster-arrow-background{
+    left: -1px;
+}
+.shelf__tooltip.tooltipster-top .tooltipster-arrow-border {
+    border-top-color: #777;
+}
+.shelf__tooltip.tooltipster-right .tooltipster-arrow-border {
+    border-right-color: #777;
+}
+.tooltipster-sidetip .tooltipster-content{
+    color: #fff;
+    line-height: 18px;
+    padding: 9px 12px 7px;
+}
+
+/*endregion */
+
+
+

@@ -1,0 +1,100 @@
+{
+    "apiVersion":"0.1.0",
+    "method":"shelf/products",
+    "params":{
+        "api_token":"2HOlJ3-zpioqTFIp2HOlJ3-"
+    },
+    "status":"success",
+    "error":null,
+    "pagination":{},
+    "data":[
+        {
+            "id": 224,
+            "category_id": 12,
+            "status_id": 4,
+            "name": "Root Beer 500ml",
+            "weblink": "root-beer-500ml",
+            "description": "<p>Deserunt aut rerum dolore rem aut rerum dolore rem.</p>",
+            "price": 4.99,
+            "stock": 48,
+            "created_at":"2019-09-04 18:21:20",
+            "updated_at":"2019-09-04 18:21:20",
+            "shelf" : {
+                "id": 5,
+                "img": "/shelfs/shelf-five.jpg"
+            },
+            "shelf_position" : {
+                "top": 8,
+                "left": 48,
+                "width": 1,
+                "height": 17
+            }
+        },
+        {
+            "id": 225,
+            "category_id": 12,
+            "status_id": 4,
+            "name": "Gin-Tonic 500ml",
+            "weblink": "gin-tonic-500ml",
+            "description": "<p>Deserunt aut rerum dolore rem aut rerum dolore rem.</p>",
+            "price": 5.00,
+            "stock": 100,
+            "created_at":"2019-09-04 18:21:20",
+            "updated_at":"2019-09-04 18:21:20",
+            "shelf" : {
+                "id": 5,
+                "img": "/shelfs/shelf-five.jpg"
+            },
+            "shelf_position" : {
+                "top": 8,
+                "left": 49,
+                "width": 1,
+                "height": 17
+            }
+        },
+        {
+            "id": 226,
+            "category_id": 12,
+            "status_id": 4,
+            "name": "Genesis 450ml",
+            "weblink": "genesis-450ml",
+            "description": "<p>Deserunt aut rerum dolore rem aut rerum dolore rem.</p>",
+            "price": 3.50,
+            "stock": 100,
+            "created_at":"2019-09-04 18:21:20",
+            "updated_at":"2019-09-04 18:21:20",
+            "shelf" : {
+                "id": 5,
+                "img": "/shelfs/shelf-five.jpg"
+            },
+            "shelf_position" : {
+                "top": 8,
+                "left": 50,
+                "width": 1,
+                "height": 17
+            }
+        },
+        {
+            "id": 227,
+            "category_id": 8,
+            "status_id": 4,
+            "name": "Nayiri Frutal 750ml",
+            "weblink": "nayiri-frutal-750ml",
+            "description": "<p>Deserunt aut rerum dolore rem aut rerum dolore rem.</p>",
+            "price": 12.00,
+            "stock": 300,
+            "created_at":"2019-09-04 18:21:20",
+            "updated_at":"2019-09-04 18:21:20",
+            "shelf" : {
+                "id": 5,
+                "img": "/shelfs/shelf-five.jpg"
+            },
+            "shelf_position" : {
+                "top": 71,
+                "left": 33,
+                "width": 14,
+                "height": 24
+            }
+        }
+    ]
+}
