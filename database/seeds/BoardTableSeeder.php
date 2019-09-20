@@ -21,7 +21,7 @@ class BoardTableSeeder extends Seeder
         foreach($images as $image){
             Board::create(
                 [
-                'path' => 'shelf.jpg',
+                    'path' => $image,
                     'author_id' => $editorId,
                     'last_editor_id' => $editorId
                 ]

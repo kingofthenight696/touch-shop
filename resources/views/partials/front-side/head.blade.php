@@ -17,6 +17,10 @@
 <script src="{{asset('js/utils.js')}}"></script>
 <script src="{{asset('js/shelfshop.js')}}"></script>
 
+<script type="text/javascript">
+    let json = @json($json);
+</script>
+
 <style>
     .bd-placeholder-img {
         font-size: 1.125rem;

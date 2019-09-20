@@ -44,25 +44,26 @@ var ShelfShop = {};
         /*
             Requesting for products and assigning the callback to product creation.
          */
-        initProductsTooltips : function()
-        {
-            $.ajax({
-                url: 'shelf-products.json'
-            }).done(function(response)
-            {
-                if(response.data == undefined){
-                    console.log('Empty response when trying to fetch the products.');
-                }
-                else if(response.data.length == 0){
-                    console.log('No products found for this shelf.');
-                }
-                else{
-                    ShelfShop.createProductsTooltips(response.data);
-                }
-            }).fail(function(jqXHR, textStatus) {
-                console.log('Error when trying to fetch the products: ' + textStatus + '.');
-            });
-        },
+        // initProductsTooltips : function()
+        // {
+        //
+        //     $.ajax({
+        //         url: 'shelf-products.json'
+        //     }).done(function(response)
+        //     {
+        //         if(response.data == undefined){
+        //             console.log('Empty response when trying to fetch the products.');
+        //         }
+        //         else if(response.data.length == 0){
+        //             console.log('No products found for this shelf.');
+        //         }
+        //         else{
+        //             ShelfShop.createProductsTooltips(response.data);
+        //         }
+        //     }).fail(function(jqXHR, textStatus) {
+        //         console.log('Error when trying to fetch the products: ' + textStatus + '.');
+        //     });
+        // },
 
         /*
             Based on a list of products creates the HTML markup and initializes the tooltips.

@@ -71,6 +71,7 @@
 
 
     <script type="text/javascript">
+
         $(function(){
             ShelfShop.init();
         });

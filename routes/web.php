@@ -13,12 +13,15 @@
 
 Route::group(["namespace" => "FrontSide"], function () {
     Route::get("/", "IndexController@index");
-});
 
-Route::get("/cart", "CartController@index")->name('cart');
-Route::post("/changeCartItem", "CartController@changeCartItem")->name('changeCartItem');
-Route::post("/removeCartItem", "CartController@removeCartItem")->name('removeCartItem');
-Route::post("/removeCart", "CartController@removeCart")->name('removeCart');
+    /*
+     * Cart
+     */
+    Route::get("/cart", "CartController@index")->name('cart');
+    Route::post("/changeCartItem", "CartController@changeCartItem")->name('changeCartItem');
+    Route::post("/removeCartItem", "CartController@removeCartItem")->name('removeCartItem');
+    Route::post("/removeCart", "CartController@removeCart")->name('removeCart');
+});
 
 Route::get("/login", "LoginController@index")->name('login');
 Route::get("/register", "RegisterController@index")->name('register');

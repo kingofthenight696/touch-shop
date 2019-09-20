@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $appends = ['coordinates'];
+//    protected $appends = ['coordinates'];
 
     protected $fillable = [
         'coordinates',
@@ -23,13 +23,13 @@ class Product extends Model
         return $this->belongsTo(Board::class);
     }
 
-    public function setCoordinatesAttribute($value)
-    {
-        return json_encode($value);
-    }
-
     public function getCoordinatesAttribute($value)
     {
         return json_decode($value, true);
+    }
+
+    public function setCoordinatesAttribute($value)
+    {
+        $this->attributes['coordinates'] =  json_encode($value);
     }
 }

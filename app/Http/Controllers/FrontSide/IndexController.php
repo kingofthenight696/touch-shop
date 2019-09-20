@@ -10,6 +10,7 @@ class IndexController extends Controller
 {
     public function index()
     {
-        return view( 'pages.front-side.index', Board::with('products')->get());
+        $json = Board::with('products')->first();
+        return view( 'pages.front-side.index', compact('json'));
     }
 }

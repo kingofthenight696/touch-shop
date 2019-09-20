@@ -1,6 +1,12 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
 }
+*,::after,::before{
+    box-sizing:unset;
+}
+.tooltip {
+    opacity: 1;
+}
 .cart{
     width: 98%;
     margin: 1%;
