@@ -12,12 +12,12 @@ $factory->define(Product::class, function (Faker $faker, $attributes) {
     $title = $faker->sentence(random_int(2, 5));
 
     return [
-        'coordinates' => json_encode([
-            'top' =>  random_int(1, 99),
-            'left' => random_int(1, 99),
-            'width' => random_int(1, 99),
-            'height' => random_int(1, 99)
-        ], true),
+        'coordinates' => [
+            'top' =>  random_int(1, 50),
+            'left' => random_int(1, 50),
+            'width' => random_int(1, 50),
+            'height' => random_int(1, 50)
+        ],
         'title' => $title,
         'description' => $faker->sentence(random_int(1, 5)),
         'price' => random_int(50, 99999),

@@ -40,11 +40,9 @@
 {{--        <p>© 2017-2019 Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>--}}
 {{--    </footer>--}}
 
-
-
-<div class="cart">
-    Cart: <span>0</span> item(s).
-</div>
+{{--<div class="cart">--}}
+{{--    Cart: <span>0</span> item(s).--}}
+{{--</div>--}}
 
 <div class="shelf">
     <div class="shelf__image">

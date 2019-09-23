@@ -3,46 +3,50 @@
 namespace App\Http\Controllers\FrontSide;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CartResource;
 use App\Services\CartService;
+use \Exception;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
     public function index(Request $request, CartService $cartService)
     {
-        return view('pages.front-side.index', $cartService->getCart());
+        $cart = $cartService->getCart();
+        return view('pages.front-side.cart', compact('cart'));
     }
 
     public function changeCartItem(Request $request, CartService $cartService)
     {
         try {
-            $cartService->changeCartItemQuantity($request->only(['product_id', 'quantity']));
-        } catch (GeneralException $exception) {
-            return $this->errorApiByException($exception);
+            $cartService->changeCartItemQuantity();
+
+        } catch (Exception $exception) {
+            dd($exception);
+            return response()->json($exception);
         }
 
-        return $this->successApiResponse(null, new CartResource($cartService->getCart()));
+        return response()->json( new CartResource($cartService->getCart()));
     }
 
     public function removeCartItem(Request $request, $productId, CartService $cartService)
     {
         try {
             $cartService->removeCartItem($productId);
-        } catch (GeneralException $exception) {
-            return $this->errorApiByException($exception);
+        } catch (Exception $exception) {
+            return response()->json($exception);
         }
 
-        return $this->successApiResponse(null, new CartResource($cartService->getCart()));
+        return response()->json(null, new CartResource($cartService->getCart()));
     }
 
     public function removeCart(Request $request, $productId, CartService $cartService)
     {
         try {
             $cartService->removeCart($productId);
-        } catch (GeneralException $exception) {
-            return $this->errorApiByException($exception);
+        } catch (Exception $exception) {
+            return response()->json($exception);
         }
-
-        return $this->successApiResponse(null, new CartResource($cartService->getCart()));
+        return response()->json(null, new CartResource($cartService->getCart()));
     }
 }

@@ -44,26 +44,19 @@ var ShelfShop = {};
         /*
             Requesting for products and assigning the callback to product creation.
          */
-        // initProductsTooltips : function()
-        // {
-        //
-        //     $.ajax({
-        //         url: 'shelf-products.json'
-        //     }).done(function(response)
-        //     {
-        //         if(response.data == undefined){
-        //             console.log('Empty response when trying to fetch the products.');
-        //         }
-        //         else if(response.data.length == 0){
-        //             console.log('No products found for this shelf.');
-        //         }
-        //         else{
-        //             ShelfShop.createProductsTooltips(response.data);
-        //         }
-        //     }).fail(function(jqXHR, textStatus) {
-        //         console.log('Error when trying to fetch the products: ' + textStatus + '.');
-        //     });
-        // },
+        initProductsTooltips : function()
+        {
+            if(board == undefined){
+                console.log('Empty response when trying to fetch the products.');
+            }
+            else if(board.products.length == 0){
+                console.log('No products found for this shelf.');
+            }
+            else{
+                ShelfShop.createProductsTooltips(board.products);
+            }
+
+        },
 
         /*
             Based on a list of products creates the HTML markup and initializes the tooltips.
@@ -72,7 +65,7 @@ var ShelfShop = {};
         {
             const shelf = $('.shelf');
             const shelfImage = $('.shelf__image');
-            const cartBaseUrl = 'cart/add/';
+            const cartBaseUrl = 'cart/add';
 
             products.forEach(function(product)
             {
@@ -83,10 +76,10 @@ var ShelfShop = {};
                 productMarkup.addClass('shelf__product tooltip');
                 //productMarkup.text(productText);
                 productMarkup.css({
-                    top : product.shelf_position.top + '%',
-                    left : product.shelf_position.left + '%',
-                    height : product.shelf_position.height + '%',
-                    width : product.shelf_position.width + '%'
+                    top : product.coordinates.top + '%',
+                    left : product.coordinates.left + '%',
+                    height : product.coordinates.height + '%',
+                    width : product.coordinates.width + '%'
                 });
                 shelfImage.append(productMarkup);
 
@@ -98,15 +91,17 @@ var ShelfShop = {};
                 const tooltipLink = tooltip.find('.button');
                 tooltip.attr('data-tooltip-base', 'false');
                 tooltipText.text(productText);
-                tooltipLink.attr('href', cartBaseUrl + product.id);
+                tooltipLink.attr('href', cartBaseUrl);
+                tooltipLink.data('product_id', product.id);
 
                 //Async functionality to add to cart
-                const cart = $('.cart');
+                const cart = $('.user-cart');
                 const cartItems = cart.find('span');
                 tooltipLink.on('click', function(){
                     tooltipLink.addClass('button--ajax-loading');
-                    $.ajax(tooltipLink.attr('href'))
-                        .done(function(){
+                    $.post(tooltipLink.attr('href'), {'product_id': product.id, 'quantity': 1} )
+                        .done(function(response){
+                            console.log(response);
                             cartItems.text(cartItems.text() * 1 + 1);
                         })
                         .always(function(){
@@ -219,5 +214,33 @@ var ShelfShop = {};
 
     };
 
+    $('.count').prop('disabled', true);
+    $(document).on('click', '.qty .plus', function(){
+        let counter = $(this).parent().find('input');
+        let count  =  parseInt(counter.val()) ;
+        count++;
+        let product_id  =  $(this).parent().find('input').data('product_id');
+        $.post('/cart/add', {'product_id': product_id, 'quantity': count})
+            .done(function(response){
+                counter.val(count);
+                updateCart(response);
+            });
+    });
+    $(document).on('click','.minus', function(){
+        let counter = $(this).parent().find('input');
+        let count  =  parseInt(counter.val()) ;
+        count--;
+        let product_id  =  $(this).parent().find('input').data('product_id');
+        $.post('/cart/add', {'product_id': product_id, 'quantity': count})
+            .done(function(response){
+                counter.val(count);
+                updateCart(response);
+            });
+    });
+
+    function updateCart(cart) {
+          $('.total_price').text(cart.total_price);
+          $('.user-cart span').text(cart.total_quantity);
+    }
 
 }(jQuery);

@@ -25,7 +25,7 @@ class Product extends Model
 
     public function getCoordinatesAttribute($value)
     {
-        return json_decode($value, true);
+        return json_decode($value);
     }
 
     public function setCoordinatesAttribute($value)

@@ -13,18 +13,14 @@ class CartService
     private $product_id;
     private $quantity;
     private $cart;
-    private $department_id;
-    private $delivery_id;
 
 
     public function __construct(Request $request, Cart $cart)
     {
         $this->user_id = $request->user() ? $request->user()->id : null;
         $this->product_id = $request->product_id;
-        $this->department_id = $request->department_id;
-        $this->delivery_id = $request->delivery_id;
-
         $this->quantity = $request->quantity ?? 1;
+
 
         $this->session_id = Session::get('session_key') ?? $this->setSession();
         $this->cart = $cart;
@@ -44,6 +40,7 @@ class CartService
     {
         $session_id = Str::random(40);
         Session::put('session_key', $session_id);
+
         return $session_id;
     }
 
@@ -59,6 +56,7 @@ class CartService
     {
         $cart = $this->checkUnexistingCart();
 
+
         $item = $cart->whereHas('cartItems', function ($query) {
             $query->where('product_id', $this->product_id);
         })->first();
@@ -66,15 +64,14 @@ class CartService
         if ($item) {
             return $item->cartItems()->where('product_id', $this->product_id)->update(['quantity' => $this->quantity]);
         }
-
         $product = Product::find($this->product_id);
 
         $cart->cartItems()->create(
             [
                 'product_id' => $product->id,
+                'board_id' => $product->board_id,
                 'price' => $product->price,
                 'quantity' => $this->quantity,
-                'preview' => $product->preview,
                 'title' => $product->title,
             ]
         );
