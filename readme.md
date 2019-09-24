@@ -25,6 +25,13 @@ Server requirements:
 - PDO PHP Extension
 - Tokenizer PHP Extension
 - XML PHP Extension
+|
+
+##Laravel installation
+If git was installed, copy this command to terminal 
+```
+git clone https://github.com/kingofthenight696/touch-shop.git
+```
 
 ## Configuration
 
