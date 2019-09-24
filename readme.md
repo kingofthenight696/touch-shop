@@ -10,11 +10,11 @@
 ## About Laravel
 
 Server requirements:
-- ** Mysql ^5.7
-- **Nginx ^1 or Apache ^2.4
-- **Git
-- **Composer
-- **Node ^12 and npm
+- **Mysql ^5.7**
+- **Nginx ^1 or Apache ^2.4**
+- **Git**
+- **Composer**
+- **Node ^12 and npm**
 
 - PHP >= 7.2.0.
 - BCMath PHP Extension.
@@ -36,10 +36,10 @@ git clone https://github.com/kingofthenight696/touch-shop.git
 ## Configuration
 
 Public Directory
-After installing Laravel, you should configure your web server's document / web root to be the public directory. The index.php in this directory serves as the front controller for all HTTP requests entering your application.
+After installing Laravel, you should configure your web server's document / web root to be the **public** directory. The index.php in this directory serves as the front controller for all HTTP requests entering your application.
 
 Directory Permissions
-After installing Laravel, you may need to configure some permissions. Directories within the storage and the bootstrap/cache directories should be writable by your web server or Laravel will not run. 
+After installing Laravel, you may need to configure some permissions. Directories within the **storage** and the **bootstrap/cache** directories should be writable by your web server or Laravel will not run. 
 
 Configure .env:
 ```
