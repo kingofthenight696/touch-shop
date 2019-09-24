@@ -28,7 +28,7 @@ Server requirements:
 |
 
 ##Laravel installation
-If git was installed, copy this command to terminal 
+If git was installed, copy this command to **console** 
 ```
 git clone https://github.com/kingofthenight696/touch-shop.git
 ```
@@ -51,7 +51,7 @@ Application Key:
 php artisan key:generate
 ```
 
-After that you should create database user with password and database table in general-ci and install your credentials to .env
+After that you should create database user with password and database table in general-ci and install your credentials **to .env**
 ```
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -61,35 +61,35 @@ DB_USERNAME=touch-shop
 DB_PASSWORD=touch-shop123
 ```
 
-After that you can change test admin credentials in .env:
+After that you can change test admin credentials **in .env**:
 ```
 TEST_ADMIN_EMAIL=test@test.com
 TEST_ADMIN_NAME=Tester
 TEST_ADMIN_PASS=11111111
 ```
 
-Change APP_ENV in .env from local to production
+Change APP_ENV **in .env** from local to production
 ```
 APP_ENV=production
 
 ```
 
-Create DB structure and install testing data to DB:
+Create DB structure and install testing data to DB **in console**:
 ```
 php artisan migrate:fresh --seed
 ```
 
-Install dependencies:
+Install dependencies **in console**:
 ```
 composer install
 ```
 
-Install dependencies:
+Install dependencies **in console**:
 ```
 npm install
 ```
 
-Make frontend:
+Make frontend **in console**:
 ```
 npm run build
 ```
