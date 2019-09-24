@@ -12,7 +12,7 @@
 */
 
 Route::group(["namespace" => "FrontSide"], function () {
-        Route::get("/", "IndexController@index")->name('home');
+        Route::get("/", "IndexController@index")->name('index');
 
         Route::get("cart", "CartController@index")->name('cart');
         Route::post("cart/add", "CartController@changeCartItem")->name('changeCartItem');
@@ -27,3 +27,7 @@ Route::get("/register", "RegisterController@index")->name('register');
 //Route::group(["namespace" => "AdminSide"], function () {
 //    Route::get("admin/", "IndexController@index");
 //});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

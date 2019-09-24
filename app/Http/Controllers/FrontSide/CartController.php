@@ -20,9 +20,7 @@ class CartController extends Controller
     {
         try {
             $cartService->changeCartItemQuantity();
-
         } catch (Exception $exception) {
-            dd($exception);
             return response()->json($exception);
         }
 

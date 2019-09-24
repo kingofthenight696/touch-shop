@@ -1,14 +1,14 @@
 @extends('layouts.front-side')
 @section('content')
-    <div class="container marketing">
-{{--        <!-- Three columns of text below the carousel -->--}}
-        <div class="row">
-            @if(!empty($cart->cartItems))
-                <table class="table table-hover mt-5">
+            @if(!empty($cart->cartItems) && (!$cart->cartItems->isEmpty()))
+                <div class="container marketing">
+                    <div class="row">
+
+                    <table class="table table-hover mt-5">
                     <thead>
                     <tr>
                         <th scope="col">Title</th>
-                        <th scope="col">Qty</th>
+                        <th scope="col" class="text-center">Qty</th>
                         <th scope="col">Price</th>
                     </tr>
                     </thead>
@@ -34,16 +34,15 @@
                             {{$cart->total_price}}
                         </span></div>
                 </div>
+                    </div><!-- /.row -->
+                </div><!-- /.container -->
             @else
-                <h1>
-                    Your cart is empty
-                </h1>
+                <div class="container h-100">
+                    <div class="row h-100 justify-content-center align-items-center">
+                        <h1>
+                            Your cart is empty
+                        </h1>
+                    </div>
+                </div>
             @endif
-        </div><!-- /.row -->
-{{--        <!-- START THE FEATURETTES -->--}}
-
-{{--        <hr class="featurette-divider">--}}
-{{--        <!-- /END THE FEATURETTES -->--}}
-
-    </div><!-- /.container -->
 @stop

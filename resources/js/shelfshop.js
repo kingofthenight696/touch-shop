@@ -69,7 +69,8 @@ var ShelfShop = {};
 
             products.forEach(function(product)
             {
-                const productText = product.name + ', $' + product.price;
+                // console.log(product);
+                const productText = product.title + ', $' + product.price;
 
                 //Creating the product markup
                 const productMarkup = $('<div/>');
@@ -101,7 +102,6 @@ var ShelfShop = {};
                     tooltipLink.addClass('button--ajax-loading');
                     $.post(tooltipLink.attr('href'), {'product_id': product.id, 'quantity': 1} )
                         .done(function(response){
-                            console.log(response);
                             cartItems.text(cartItems.text() * 1 + 1);
                         })
                         .always(function(){

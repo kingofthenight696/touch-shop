@@ -8,7 +8,6 @@ use Illuminate\Support\Str;
 
 class CartService
 {
-    private $user_id;
     private $session_id;
     private $product_id;
     private $quantity;
@@ -17,23 +16,12 @@ class CartService
 
     public function __construct(Request $request, Cart $cart)
     {
-        $this->user_id = $request->user() ? $request->user()->id : null;
+        $this->product_id = $request->product_id;
         $this->product_id = $request->product_id;
         $this->quantity = $request->quantity ?? 1;
-
-
-        $this->session_id = Session::get('session_key') ?? $this->setSession();
         $this->cart = $cart;
 
-        $userCart = (!is_null($this->user_id))
-            ? $this->cart->getCartByUser($this->user_id)
-            : null;
-
-        $sessionCart = $this->cart->getCartBySession($this->session_id);
-
-        if ((!is_null($sessionCart) && !is_null($userCart)) && $sessionCart->diffAssoc($userCart)) {
-            $this->mergeCarts($userCart, $sessionCart);
-        }
+        $this->session_id = Session::get('session_key') ?? $this->setSession();
     }
 
     private function setSession()
@@ -56,14 +44,14 @@ class CartService
     {
         $cart = $this->checkUnexistingCart();
 
-
         $item = $cart->whereHas('cartItems', function ($query) {
             $query->where('product_id', $this->product_id);
-        })->first();
+        })->with(['cartItems'])->first();
 
         if ($item) {
             return $item->cartItems()->where('product_id', $this->product_id)->update(['quantity' => $this->quantity]);
         }
+
         $product = Product::find($this->product_id);
 
         $cart->cartItems()->create(
@@ -80,9 +68,8 @@ class CartService
 
     private function checkUnexistingCart()
     {
-        if (!$cart = $this->cart->getCartByUserOrSession($this->user_id, $this->session_id)->first()) {
+        if (!$cart = $this->cart->getCartBySession($this->session_id)->first()) {
             $cart = Cart::create([
-                'user_id' => ($this->user_id) ?? null,
                 'session' => $this->session_id,
             ]);
         }
@@ -92,7 +79,7 @@ class CartService
 
     public function removeCartItem($productId)
     {
-        $cart = Cart::whereSession($this->session_id)->first();
+        $cart = $this->cart->getCartBySession($this->session_id)->first();
 
         if ($cart->cartItems()->count() === 1) {
             $this->removeCart();

@@ -23,7 +23,7 @@ class Cart extends Model
 
     public function getCartBySession($sessionId)
     {
-        return Cart::bySession($sessionId)->first();
+        return Cart::bySession($sessionId);
     }
 
     public function scopeBySession($query, $sessionId)
@@ -39,14 +39,5 @@ class Cart extends Model
     public function getTotalQuantityAttribute()
     {
         return $this->cartItems()->sum(DB::raw('quantity'));
-    }
-
-    public function getCartByUserOrSession(int $user_id = null, string $session_id)
-    {
-        return Cart::when($user_id, function ($query) use ($user_id) {
-            return $query->where('user_id', $user_id);
-        })->orWhere('session', $session_id)->with([
-            'cartItems',
-        ]);
     }
 }
