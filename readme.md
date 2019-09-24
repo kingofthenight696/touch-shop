@@ -43,7 +43,7 @@ After installing Laravel, you may need to configure some permissions. Directorie
 
 Configure .env:
 ```
-Rename .env.example file to .env. 
+Copy and rename .env.example file to .env. 
 ```
 
 Application Key:
