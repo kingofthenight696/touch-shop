@@ -32,6 +32,11 @@
     <script src="{{asset('js/initAdmin.js')}}"></script>
 
     <script type="text/javascript">
+
+        @if(!empty($board))
+            let board = @json($board);
+        @endif
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -43,7 +48,7 @@
 
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+{{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
 </head>
 <body>
     <div id="app">

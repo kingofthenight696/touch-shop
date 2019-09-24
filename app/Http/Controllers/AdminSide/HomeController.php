@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminSide;
 
 use App\Http\Controllers\Controller;
+use App\Models\Board;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,6 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $board = Board::with('products')->first();
+
+        return view('home', compact('board'));
     }
 }

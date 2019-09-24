@@ -25,41 +25,48 @@
     </div>
 </div>
 
-{{--<div class="container marketing">--}}
-{{--    <div class="row">--}}
+@if(!empty($board) && (!$board->products->isEmpty()))
+    <div class="container marketing">
+        <div class="row">
 
-{{--        <table class="table table-hover mt-5">--}}
-{{--            <thead>--}}
-{{--            <tr>--}}
-{{--                <th scope="col">Title</th>--}}
-{{--                <th scope="col" class="text-center">Qty</th>--}}
-{{--                <th scope="col">Price</th>--}}
-{{--            </tr>--}}
-{{--            </thead>--}}
-{{--            <tbody>--}}
-{{--            @foreach($cart->cartItems as $cartItem)--}}
-{{--                <tr>--}}
-{{--                    <td>{{$cartItem->title}}</td>--}}
-{{--                    <td>--}}
-{{--                        <div class="qty">--}}
-{{--                            <span class="minus bg-dark">-</span>--}}
-{{--                            <input type="number" class="count" name="qty" value="{{$cartItem->quantity}}" data-product_id="{{$cartItem->product_id}}">--}}
-{{--                            <span class="plus bg-dark">+</span>--}}
-{{--                        </div>--}}
-{{--                    </td>--}}
-{{--                    <td>{{$cartItem->price}}</td>--}}
-{{--                </tr>--}}
-{{--            @endforeach--}}
-{{--            </tbody>--}}
-{{--        </table>--}}
-{{--        <div class="p-2 bg-dark w-100">--}}
-{{--            <div class="text-right text-white">Total: $--}}
-{{--                <span class="total_price">--}}
-{{--                            {{$cart->total_price}}--}}
-{{--                        </span></div>--}}
-{{--        </div>--}}
-{{--    </div><!-- /.row -->--}}
-{{--</div><!-- /.container -->--}}
+            <table class="table table-hover mt-5">
+                <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($board->products as $product)
+                    <tr>
+                        <td>{{$product->title}}</td>
+                        <td>
+                            {{$product->description}}
+                        </td>
+                        <td>{{$product->price}}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+            <div class="p-2 bg-dark w-100">
+                <div class="text-right text-white">Product count:
+                    <span class="product_count">
+                        {{$board->products->count()}}
+                    </span>
+                </div>
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+@else
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <h1>
+                Shelf is empty
+            </h1>
+        </div>
+    </div>
+@endif
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -71,15 +78,19 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form class="product-form">
+                    <input type="number" hidden name="coordinates[]top" class="top">
+                    <input type="number" hidden name="coordinates[]left" class="left">
+                    <input type="number" hidden name="coordinates[]width" class="width">
+                    <input type="number" hidden name="coordinates[]height" class="height">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1">
+                        <input type="text" name="title" class="form-control" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Description" aria-label="Description" aria-describedby="basic-addon1">
+                        <input type="text" name="description" class="form-control" placeholder="Description" aria-label="Description" aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Price" aria-label="Price" aria-describedby="basic-addon1">
+                        <input type="number" name="price" step="0.01" min="0" class="form-control" placeholder="Price" aria-label="Price" aria-describedby="basic-addon1">
                     </div>
                 </form>
             </div>
