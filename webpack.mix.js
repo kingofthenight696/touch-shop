@@ -29,4 +29,8 @@ mix.js('resources/js/app.js', 'public/js')
     .copy('node_modules/bootstrap/dist/js/bootstrap.min.js', 'public/js/bootstrap.min.js')
     .copy('resources/js/shelfshop.js', 'public/js/shelfshop.js')
     .copy('resources/js/utils.js', 'public/js/utils.js')
+
+    .copy('resources/plugins/imageareaselect', 'public/plugins/imageareaselect')
+    .copy('resources/js/initAdmin.js', 'public/js/initAdmin.js')
+
     .sass('resources/sass/app.scss', 'public/css');

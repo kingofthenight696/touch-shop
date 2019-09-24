@@ -24,10 +24,14 @@ Route::get("/login", "LoginController@index")->name('login');
 Route::get("/register", "RegisterController@index")->name('register');
 
 
-//Route::group(["namespace" => "AdminSide"], function () {
-//    Route::get("admin/", "IndexController@index");
-//});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['web'], "namespace" => "AdminSide"], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::post('/product/add', 'ProductController@addProduct')->name('addProduct');
+    Route::put('/product/edit/{$productId}', 'ProductController@addProduct')->name('editProduct');
+    Route::delete('/product/{$productId}', 'ProductController@addProduct')->name('deleteProduct');
+});
+//Route::middleware('Authenticate')
+

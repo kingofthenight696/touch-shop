@@ -46,7 +46,7 @@
 
 <div class="shelf">
     <div class="shelf__image">
-        <img src="img/boards/shelf-low.jpg" data-full-src="img/boards/shelf.jpg">
+        <img  src="img/boards/shelf-low.jpg" data-full-src="img/boards/shelf.jpg">
     </div>
     <div class="shelf__zoom">
         <i class="shelf__zoom-button shelf__zoom-plus fas fa-search-plus"></i>
@@ -66,7 +66,6 @@
         </div>
     </div>
 </div>
-
 
     <script type="text/javascript">
 

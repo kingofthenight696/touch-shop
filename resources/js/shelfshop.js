@@ -69,7 +69,6 @@ var ShelfShop = {};
 
             products.forEach(function(product)
             {
-                // console.log(product);
                 const productText = product.title + ', $' + product.price;
 
                 //Creating the product markup
