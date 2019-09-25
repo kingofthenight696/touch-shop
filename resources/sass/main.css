@@ -191,6 +191,12 @@ body{
     padding: 9px 12px 7px;
 }
 
+.shelf-product-hover{
+    border: 1px solid #2e9d64;
+}
+.input-group>.form-control{
+     width: 100%;
+}
 /*endregion */
 
 

@@ -1,30 +1,41 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\AdminSide;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\AddProductRequest;
-use App\Http\Resources\CartResource;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function addProduct(AddProductRequest $request)
+    public function getProduct($productId)
     {
-        $product = new ProductResource(
-            Product::create($request->only([
-                'board_id',
-                'title',
-                'description',
-                'price',
-            ])));
+        $product = Product::find($productId);
 
         return response()->json(
             [
                 'status' => true,
-                'msg'=>'success',
+                'msg' => 'success',
                 'data' => new ProductResource($product)
+            ]);
+    }
+
+    public function addProduct(AddProductRequest $request)
+    {
+        $result = Product::create($request->only([
+            'board_id',
+            'title',
+            'description',
+            'price',
+            'coordinates',
+        ]));
+
+        return response()->json(
+            [
+                'status' => true,
+                'msg' => 'success',
+                'data' => new ProductResource($result)
             ]);
     }
 
@@ -33,31 +44,31 @@ class ProductController extends Controller
         $product = Product::find($productId);
 
         $result = $product->update($request->only([
-            'board_id',
             'title',
             'description',
             'price',
+            'coordinates',
         ]));
 
-        return $product
+        return $result
             ? response()->json([
-                    'status' => true,
-                    'msg'=>'success',
-                    'data' => new ProductResource($result)
-                ])
+                'status' => true,
+                'msg' => 'success',
+                'data' => new ProductResource($product)
+            ])
             : response()->json([
                 'status' => false,
                 'msg' => 'fail'
             ]);
     }
 
-    public function removeProduct($productId)
+    public function deleteProduct($productId)
     {
         $product = Product::where('id', $productId)->delete();
         return $product
             ? response()->json([
                 'status' => true,
-                'msg'=>'success'
+                'msg' => 'success'
             ])
             : response()->json([
                 'status' => false,

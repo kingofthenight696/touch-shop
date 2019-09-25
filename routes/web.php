@@ -29,9 +29,10 @@ Auth::routes();
 
 Route::group(['middleware' => ['web'], "namespace" => "AdminSide"], function () {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/product/{productId}', 'ProductController@getProduct');
     Route::post('/product/add', 'ProductController@addProduct')->name('addProduct');
-    Route::put('/product/edit/{$productId}', 'ProductController@addProduct')->name('editProduct');
-    Route::delete('/product/{$productId}', 'ProductController@addProduct')->name('deleteProduct');
+    Route::post('/product/edit/{productId}', 'ProductController@editProduct')->name('editProduct');
+    Route::post('/product/delete/{productId}', 'ProductController@deleteProduct')->name('deleteProduct');
 });
 //Route::middleware('Authenticate')
 

@@ -25,7 +25,7 @@
     <script src="{{asset('js/panzoom.js')}}"></script>
     <script src="{{asset('plugins/tooltipster/js/tooltipster.bundle.min.js')}}"></script>
     <script src="{{asset('js/utils.js')}}"></script>
-    <script src="{{asset('js/shelfshop.js')}}"></script>
+{{--    <script src="{{asset('js/shelfshop.js')}}"></script>--}}
     <script  type="text/javascript"  src="{{asset('plugins/imageareaselect/scripts/jquery.imgareaselect.pack.js')}}"></script>
 
 

@@ -1,8 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
+{{--    <button id="showToast" class="btn btn-primary btn-lg w-25 mx-auto">Show Toast</button>--}}
 
-<div class="shelf">
+{{--    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000" style="position: absolute; top: 1rem; right: 1rem;">--}}
+{{--        <div class="toast-header">--}}
+
+{{--            <strong class="mr-auto">Bootstrap</strong>--}}
+{{--            <small>11 mins ago</small>--}}
+{{--            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">--}}
+{{--                <span aria-hidden="true">&times;</span>--}}
+{{--            </button>--}}
+{{--        </div>--}}
+{{--        <div class="toast-body" data-defaut>--}}
+{{--            Hello, world! This is a toast message.--}}
+{{--        </div>--}}
+{{--    </div>--}}
+
+<div class="shelf" data-board-id="{{$board->id}}">
     <div class="shelf__image">
         <img id="board" src="img/boards/shelf-low.jpg" data-full-src="img/boards/shelf.jpg">
     </div>
@@ -17,10 +32,12 @@
     <div class="shelf__tooltip__content" data-tooltip-base="true">
         <h3 class="shelf__tooltip__text"></h3>
         <div class="shelf__tooltip__action">
-            <a class="button button--green button--ajax" href="/">
-                <img src="img/loading_white_green.gif">
-                <span>Add to cart</span>
-            </a>
+            <button class="btn btn-primary product-edit">
+                <span><i class="fa fa-edit"></i></span>
+            </button>
+            <button class="btn btn-danger product-remove">
+                <span><i class="fa fa-times"></i></span>
+            </button>
         </div>
     </div>
 </div>
@@ -35,6 +52,7 @@
                     <th scope="col">Title</th>
                     <th scope="col">Description</th>
                     <th scope="col">Price</th>
+                    <th scope="col">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -45,6 +63,13 @@
                             {{$product->description}}
                         </td>
                         <td>{{$product->price}}</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-success product-search" data-product-id="{{$product->id}}"><i class="fa fa-search"></i></button>
+                                <button type="button" class="btn btn-primary product-edit" data-product-id="{{$product->id}}"><i class="fa fa-edit"></i></button>
+                                <button type="button" class="btn btn-danger product-remove" data-product-id="{{$product->id}}"><i class="fa fa-times"></i></button>
+                            </div>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -68,7 +93,7 @@
     </div>
 @endif
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="product-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -78,25 +103,51 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="product-form">
-                    <input type="number" hidden name="coordinates[]top" class="top">
-                    <input type="number" hidden name="coordinates[]left" class="left">
-                    <input type="number" hidden name="coordinates[]width" class="width">
-                    <input type="number" hidden name="coordinates[]height" class="height">
+                <form class="product-form" id="my-awesome-dropzone">
+                    <input type="number" hidden name="coordinates[top]" class="top">
+                    <input type="number" hidden name="coordinates[left]" class="left">
+                    <input type="number" hidden name="coordinates[width]" class="width">
+                    <input type="number" hidden name="coordinates[height]" class="height">
+                    <input type="number" hidden name="board_id" class="board-id">
                     <div class="input-group mb-3">
-                        <input type="text" name="title" class="form-control" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1">
+                        <label for="product-title">Product title</label>
+                        <input id="product-title" type="text" name="title" class="product-title form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" name="description" class="form-control" placeholder="Description" aria-label="Description" aria-describedby="basic-addon1">
+                        <label for="product-description">Product description</label>
+                        <input id="product-description" type="text" name="description" class="product-description form-control" placeholder="Description" aria-label="Description" aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group mb-3">
-                        <input type="number" name="price" step="0.01" min="0" class="form-control" placeholder="Price" aria-label="Price" aria-describedby="basic-addon1">
+                        <label for="product-price">Product price</label>
+                        <input id="product-price" type="number" name="price" step="0.01" min="0" class="product-price form-control" placeholder="Price" aria-label="Price" aria-describedby="basic-addon1">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary add-product">Add product</button>
+                <button type="button" class="btn btn-primary product-save">Add product</button>
                 <button type="button" class="btn btn-secondary cancel-product" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="product-remove-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Remove product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <h4>
+                    Do you want to remove this product?
+                </h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger product-remove-yes">Yes</button>
+                <button type="button" class="btn btn-primary cancel-product" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>

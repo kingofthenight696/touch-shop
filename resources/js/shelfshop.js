@@ -73,13 +73,13 @@ var ShelfShop = {};
 
                 //Creating the product markup
                 const productMarkup = $('<div/>');
-                productMarkup.addClass('shelf__product tooltip');
+                productMarkup.addClass(`shelf__product tooltip product-${product.id}`);
                 //productMarkup.text(productText);
                 productMarkup.css({
-                    top : product.coordinates.top + '%',
-                    left : product.coordinates.left + '%',
-                    height : product.coordinates.height + '%',
-                    width : product.coordinates.width + '%'
+                    top : product.coordinates.top + 'px',
+                    left : product.coordinates.left + 'px',
+                    height : product.coordinates.height + 'px',
+                    width : product.coordinates.width + 'px'
                 });
                 shelfImage.append(productMarkup);
 
@@ -210,7 +210,6 @@ var ShelfShop = {};
                 instance.moveBy(0, 0);
             });
         }
-
     };
 
     $('.count').prop('disabled', true);
