@@ -11,11 +11,11 @@
 |
 */
 
+Route::post("cart/add", "FrontSide\CartController@changeCartItem")->name('changeCartItem');
 Route::group(["namespace" => "FrontSide"], function () {
         Route::get("/", "IndexController@index")->name('index');
 
         Route::get("cart", "CartController@index")->name('cart');
-        Route::post("cart/add", "CartController@changeCartItem")->name('changeCartItem');
         Route::delete("cart/remove", "CartController@removeCart")->name('removeCart');
         Route::delete("cart/remove/{id}", "CartController@removeCartItem")->name('removeCartItem');
 });
