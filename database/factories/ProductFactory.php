@@ -11,12 +11,17 @@ $factory->define(Product::class, function (Faker $faker, $attributes) {
 
     $title = $faker->sentence(random_int(2, 5));
 
+    $top = random_int(1, 70);
+    $left = random_int(1, 70);
+    $width = random_int(1, 3);
+    $height = random_int(20, 30);
+
     return [
         'coordinates' => [
-            'top' =>  random_int(1, 50),
-            'left' => random_int(1, 50),
-            'width' => random_int(1, 50),
-            'height' => random_int(1, 50)
+            'top' =>  $top,
+            'left' => $left,
+            'width' => $width,
+            'height' => $height
         ],
         'title' => $title,
         'description' => $faker->sentence(random_int(1, 5)),

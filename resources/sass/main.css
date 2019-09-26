@@ -121,7 +121,7 @@ body{
 }
 .shelf__product:hover,
 .shelf__product--active{
-    border: 1px solid #2e9d64;
+    border: 2px solid #02ff7d;
 }
 .tooltip_templates {
     display: none;
@@ -198,8 +198,9 @@ body{
      width: 100%;
 }
 /*endregion */
-
-
+.modal{
+ z-index: 9999999999;
+}
 /*
 ////
  */
@@ -257,7 +258,7 @@ input{
     border: 0;
     width: 2%;
 }
-nput::-webkit-outer-spin-button,
+input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;

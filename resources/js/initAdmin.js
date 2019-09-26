@@ -75,10 +75,10 @@ var ShelfShop = {};
                 const productMarkup = $('<div/>');
                 productMarkup.addClass(`shelf__product tooltip product-${product.id}`);
                 productMarkup.css({
-                    top : product.coordinates.top + 'px',
-                    left : product.coordinates.left + 'px',
-                    height : product.coordinates.height + 'px',
-                    width : product.coordinates.width + 'px'
+                    top : product.coordinates.top + '%',
+                    left : product.coordinates.left + '%',
+                    height : product.coordinates.height + '%',
+                    width : product.coordinates.width + '%'
                 });
                 shelfImage.append(productMarkup);
 
@@ -96,8 +96,18 @@ var ShelfShop = {};
 
                 if(Utils.isMobile())
                 {
+                    console.log('mobile');
                     productMarkup.tooltipster({
-                        trigger: 'click',
+                        trigger: 'custom',
+                        triggerOpen: {
+                            mouseenter: true,
+                            touchstart: true
+                        },
+                        triggerClose: {
+                            click: true,
+                            scroll: true,
+                            tap: true
+                        },
                         interactive: true,
                         contentAsHTML : true,
                         functionBefore: function(instance, helper){
@@ -114,8 +124,17 @@ var ShelfShop = {};
                 }
                 else
                 {
+                    console.log('desktop');
+
                     productMarkup.tooltipster({
-                        trigger: 'hover',
+                        trigger: 'custom',
+                        triggerOpen: {
+                            // mouseenter: true,
+                            click: true
+                        },
+                        triggerClose: {
+                            click: true,
+                        },
                         interactive: true,
                         contentAsHTML : true,
                         functionBefore: function(instance, helper){
@@ -164,10 +183,22 @@ var ShelfShop = {};
 
 $(function(){
 
+    let shelfWidth = $('img#board').width();
+    let shelfHeight = $('img#board').height();
+
+
     let shelf = $('img#board').imgAreaSelect({
         instance: true,
         handles: true,
         onSelectEnd: function (img, selection) {
+
+            console.log(selection);
+
+            const shelfTopPercent =  selection.y1 * 100 / shelfHeight;
+            const shelfLeftPercent =  selection.x1 * 100 / shelfWidth;
+
+            const shelfWidthPercent =  selection.width * 100 / shelfWidth;
+            const shelfHeightPercent =  selection.height * 100 / shelfHeight;
 
             const modal = $('#product-modal');
             const form = $('.product-form');
@@ -179,12 +210,16 @@ $(function(){
             modal.find('.board-id').val(board_id);
             form.data('action', 'add');
 
-            modal.find('.top').val(selection.y1);
-            modal.find('.left').val(selection.x1);
-            modal.find('.width').val(selection.width);
-            modal.find('.height').val(selection.height);
+            modal.find('.top').val(shelfTopPercent);
+            modal.find('.left').val(shelfLeftPercent);
+            modal.find('.width').val(shelfWidthPercent);
+            modal.find('.height').val(shelfHeightPercent);
             modal.modal('show');
         }
+    });
+
+    $('#product-modal').on('hide.bs.modal', function (e) {
+        shelf.cancelSelection();
     });
 
     const formActions = {
@@ -199,9 +234,6 @@ $(function(){
             "route": "/product/add",
         },
     };
-    $('#product-modal').on('hide.bs.modal', function (e) {
-        shelf.cancelSelection();
-    });
 
     $(document).on('click', '.product-edit', function (event) {
         let productId = $(this).data('product-id');

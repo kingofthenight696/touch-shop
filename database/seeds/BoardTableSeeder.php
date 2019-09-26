@@ -18,16 +18,14 @@ class BoardTableSeeder extends Seeder
 
         $images = ['shelf.jpg', 'shelf-low.jpg'];
 
-        foreach($images as $image){
             Board::create(
                 [
-                    'path' => $image,
+                    'path' => 'shelf.jpg',
                     'author_id' => $editorId,
                     'last_editor_id' => $editorId
                 ]
             )->each(function($board) {
-                factory(Product::class)->create(['board_id' => $board->id]);
+                factory(Product::class, 20)->create(['board_id' => $board->id]);
             });
         }
-    }
 }

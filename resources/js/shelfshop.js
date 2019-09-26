@@ -76,10 +76,10 @@ var ShelfShop = {};
                 productMarkup.addClass(`shelf__product tooltip product-${product.id}`);
                 //productMarkup.text(productText);
                 productMarkup.css({
-                    top : product.coordinates.top + 'px',
-                    left : product.coordinates.left + 'px',
-                    height : product.coordinates.height + 'px',
-                    width : product.coordinates.width + 'px'
+                    top : product.coordinates.top + '%',
+                    left : product.coordinates.left + '%',
+                    height : product.coordinates.height + '%',
+                    width : product.coordinates.width + '%'
                 });
                 shelfImage.append(productMarkup);
 
@@ -112,7 +112,16 @@ var ShelfShop = {};
                 if(Utils.isMobile())
                 {
                     productMarkup.tooltipster({
-                        trigger: 'click',
+                        trigger: 'custom',
+                        triggerOpen: {
+                            mouseenter: true,
+                            touchstart: true
+                        },
+                        triggerClose: {
+                            click: true,
+                            scroll: true,
+                            tap: true
+                        },
                         interactive: true,
                         contentAsHTML : true,
                         functionBefore: function(instance, helper){
@@ -130,7 +139,13 @@ var ShelfShop = {};
                 else
                 {
                     productMarkup.tooltipster({
-                        trigger: 'hover',
+                        trigger: 'custom',
+                        triggerOpen: {
+                            click: true
+                        },
+                        triggerClose: {
+                            click: true,
+                        },
                         interactive: true,
                         contentAsHTML : true,
                         functionBefore: function(instance, helper){
