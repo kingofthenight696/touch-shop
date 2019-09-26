@@ -1,22 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-{{--    <button id="showToast" class="btn btn-primary btn-lg w-25 mx-auto">Show Toast</button>--}}
-
-{{--    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000" style="position: absolute; top: 1rem; right: 1rem;">--}}
-{{--        <div class="toast-header">--}}
-
-{{--            <strong class="mr-auto">Bootstrap</strong>--}}
-{{--            <small>11 mins ago</small>--}}
-{{--            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">--}}
-{{--                <span aria-hidden="true">&times;</span>--}}
-{{--            </button>--}}
-{{--        </div>--}}
-{{--        <div class="toast-body" data-defaut>--}}
-{{--            Hello, world! This is a toast message.--}}
-{{--        </div>--}}
-{{--    </div>--}}
-
 <div class="shelf" data-board-id="{{$board->id}}">
     <div class="shelf__image">
         <img id="board" src="img/boards/shelf-low.jpg" data-full-src="img/boards/shelf.jpg">

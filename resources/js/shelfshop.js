@@ -57,7 +57,6 @@ var ShelfShop = {};
             }
 
         },
-
         /*
             Based on a list of products creates the HTML markup and initializes the tooltips.
          */
@@ -164,6 +163,7 @@ var ShelfShop = {};
          */
         initPanZoom : function()
         {
+
             const shelf = $('.shelf');
             const shelfElement = shelf[0];
             const shelfImage = $('.shelf__image');

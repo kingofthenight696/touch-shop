@@ -124,8 +124,6 @@ var ShelfShop = {};
                 }
                 else
                 {
-                    console.log('desktop');
-
                     productMarkup.tooltipster({
                         trigger: 'custom',
                         triggerOpen: {

@@ -63,12 +63,11 @@ body{
 }
 
 .shelf{
-    width: 98%;
-    border: 6px solid black;
     box-sizing: border-box;
-    overflow: hidden;
-    margin: 1%;
     position: relative;
+    /*overflow: hidden;*/
+    overflow-x:hidden;
+    height: 100%;
 }
 .shelf__image img{
     display: block;
