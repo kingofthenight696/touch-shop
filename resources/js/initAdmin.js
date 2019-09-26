@@ -96,7 +96,6 @@ var ShelfShop = {};
 
                 if(Utils.isMobile())
                 {
-                    console.log('mobile');
                     productMarkup.tooltipster({
                         trigger: 'custom',
                         triggerOpen: {
@@ -190,8 +189,6 @@ $(function(){
         handles: true,
         onSelectEnd: function (img, selection) {
 
-            console.log(selection);
-
             const shelfTopPercent =  selection.y1 * 100 / shelfHeight;
             const shelfLeftPercent =  selection.x1 * 100 / shelfWidth;
 
@@ -265,17 +262,16 @@ $(function(){
     $(document).on('click', '.product-save', function (e) {
         const form = $('.product-form');
         const productId = form.data('product-id');
-
+        const serializedData = form.serialize();
         const route = (form.data('action') === 'edit')
             ? `${formActions.edit.route}${productId}`
             : formActions.add.route;
+            $.post(route, serializedData)
+                .done(function(response){
+                    $('#product-modal').modal('hide');
 
-        $.post(route, form.serialize())
-            .done(function(response){
-                $('#product-modal').modal('hide');
-            });
-        location.reload();
-
+                    location.reload();
+                });
     });
 
     //ask product remove
