@@ -65,7 +65,7 @@ var ShelfShop = {};
         {
             const shelf = $('.shelf');
             const shelfImage = $('.shelf__image');
-            const cartBaseUrl = 'cart/add';
+            const cartBaseUrl = '/cart/add';
 
             products.forEach(function(product)
             {
