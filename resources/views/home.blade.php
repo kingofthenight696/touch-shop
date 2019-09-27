@@ -4,7 +4,7 @@
 
 <div class="shelf" data-board-id="{{$board->id}}">
     <div class="shelf__image">
-        <img id="board" src="{{ asset('img/boards/'.$board->path) }}" data-full-src="{{ asset('img/boards/'.$board->path) }}">
+        <img id="board" src="{{ asset('storage/app/public/boards/'.$board->path) }}" data-full-src="{{ asset('img/boards/'.$board->path) }}">
 
     </div>
     <div class="shelf__zoom">

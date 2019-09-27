@@ -17,7 +17,7 @@ class BoardController extends Controller
             $file = $request->file('board');
             $extension = $file->getClientOriginalExtension(); // getting image extension
             $filename = time().'.'.$extension;
-            $file->move('img/boards/', $filename);
+            Storage::disk('public')->put('boards', $file);
 
             $board = Board::first();
             $board->path = $filename;
