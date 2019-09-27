@@ -25,7 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $board = Board::with('products')->first();
+        $board = Board::with([
+            'products' => function ($query){
+                return $query->orderBy('id', 'desc');
+            }
+        ])->first();
 
         return view('home', compact('board'));
     }

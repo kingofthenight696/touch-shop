@@ -11,7 +11,8 @@ var ShelfShop = {};
             ShelfShop.initShelf();
 
             //If it's not mobile, initializing the pan and zoom feature
-            if(!Utils.isMobile()) ShelfShop.initPanZoom();
+            // if(!Utils.isMobile())
+                ShelfShop.initPanZoom();
 
             //Initializing the products markup and tooltips
             ShelfShop.initProductsTooltips();
@@ -163,6 +164,7 @@ var ShelfShop = {};
          */
         initPanZoom : function()
         {
+
 
             const shelf = $('.shelf');
             const shelfElement = shelf[0];
