@@ -181,50 +181,54 @@ var ShelfShop = {};
 
 $(function(){
 
-    let shelfElement = $('img#board');
-    let shelfWidth = shelfElement.width();
-    let shelfHeight = shelfElement.height();
+    $('img#board').one('load',function() {
+
+        let shelfElement = $('img#board');
+        let shelfWidth = shelfElement.width();
+        let shelfHeight = shelfElement.height();
 
 
-    let shelf = $('img#board').imgAreaSelect({
-        instance: true,
-        handles: true,
-        onSelectEnd: function (img, selection) {
+        let shelf = $('img#board').imgAreaSelect({
+            instance: true,
+            handles: true,
+            onSelectEnd: function (img, selection) {
 
-            console.log(selection);
-            const shelfTopPercent =  selection.y1 * 100 / shelfHeight;
-            const shelfLeftPercent =  selection.x1 * 100 / shelfWidth;
+                console.log(selection);
+                const shelfTopPercent =  selection.y1 * 100 / shelfHeight;
+                const shelfLeftPercent =  selection.x1 * 100 / shelfWidth;
 
-            const shelfWidthPercent =  selection.width * 100 / shelfWidth;
-            const shelfHeightPercent =  selection.height * 100 / shelfHeight;
+                const shelfWidthPercent =  selection.width * 100 / shelfWidth;
+                const shelfHeightPercent =  selection.height * 100 / shelfHeight;
 
-            const modal = $('#product-modal');
-            const form = $('.product-form');
-            const board_id = $('.shelf').data('board-id');
+                const modal = $('#product-modal');
+                const form = $('.product-form');
+                const board_id = $('.shelf').data('board-id');
 
-            form.trigger("reset");
-            modal.find('.modal-title').text(formActions.add.formTitle);
-            modal.find('.product-save').text(formActions.add.actionButtonTitle);
-            modal.find('.board-id').val(board_id);
-            form.data('action', 'add');
+                form.trigger("reset");
+                modal.find('.modal-title').text(formActions.add.formTitle);
+                modal.find('.product-save').text(formActions.add.actionButtonTitle);
+                modal.find('.board-id').val(board_id);
+                form.data('action', 'add');
 
-            console.log('shelfWidth', shelfWidth);
-            console.log('shelfHeight', shelfHeight);
-            console.log('shelfTopPercent', shelfTopPercent);
-            console.log('shelfLeftPercent', shelfLeftPercent);
-            console.log('shelfWidthPercent', shelfWidthPercent);
-            console.log('shelfHeightPercent', shelfHeightPercent);
+                console.log('shelfWidth', shelfWidth);
+                console.log('shelfHeight', shelfHeight);
+                console.log('shelfTopPercent', shelfTopPercent);
+                console.log('shelfLeftPercent', shelfLeftPercent);
+                console.log('shelfWidthPercent', shelfWidthPercent);
+                console.log('shelfHeightPercent', shelfHeightPercent);
 
-            modal.find('.top').val(shelfTopPercent);
-            modal.find('.left').val(shelfLeftPercent);
-            modal.find('.width').val(shelfWidthPercent);
-            modal.find('.height').val(shelfHeightPercent);
-            modal.modal('show');
-        }
-    });
+                modal.find('.top').val(shelfTopPercent);
+                modal.find('.left').val(shelfLeftPercent);
+                modal.find('.width').val(shelfWidthPercent);
+                modal.find('.height').val(shelfHeightPercent);
+                modal.modal('show');
+            }
+        });
 
-    $('#product-modal').on('hide.bs.modal', function (e) {
-        shelf.cancelSelection();
+        $('#product-modal').on('hide.bs.modal', function (e) {
+            shelf.cancelSelection();
+        });
+
     });
 
     const formActions = {
