@@ -21,11 +21,12 @@
     <link href="{{asset('plugins/imageareaselect/css/imgareaselect-animated.css')}}" rel="stylesheet">
 
     <script src="{{asset('js/jquery.min.js')}}"></script>
-    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+{{--    <script src="{{asset('js/bootstrap.min.js')}}"></script>--}}
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('js/panzoom.js')}}"></script>
     <script src="{{asset('plugins/tooltipster/js/tooltipster.bundle.min.js')}}"></script>
     <script src="{{asset('js/utils.js')}}"></script>
-{{--    <script src="{{asset('js/shelfshop.js')}}"></script>--}}
+{{--    <script src="{{asset('js/popover.min.js')}}"></script>--}}
     <script  type="text/javascript"  src="{{asset('plugins/imageareaselect/scripts/jquery.imgareaselect.pack.js')}}"></script>
 
 
@@ -107,14 +108,5 @@
             @yield('content')
         </main>
     </div>
-    <script type="text/javascript">
-
-        // $(function(){
-        //     ShelfShop.init();
-        // });
-        // $(document).ready(function () {
-        // $('.shelf__image img').imgAreaSelect({ maxWidth: 200, maxHeight: 150, handles: true });
-        // });
-    </script>
 </body>
 </html>

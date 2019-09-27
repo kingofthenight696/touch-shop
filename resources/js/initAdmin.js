@@ -187,13 +187,11 @@ $(function(){
         let shelfWidth = shelfElement.width();
         let shelfHeight = shelfElement.height();
 
-
         let shelf = $('img#board').imgAreaSelect({
             instance: true,
             handles: true,
             onSelectEnd: function (img, selection) {
 
-                console.log(selection);
                 const shelfTopPercent =  selection.y1 * 100 / shelfHeight;
                 const shelfLeftPercent =  selection.x1 * 100 / shelfWidth;
 
@@ -210,13 +208,6 @@ $(function(){
                 modal.find('.board-id').val(board_id);
                 form.data('action', 'add');
 
-                console.log('shelfWidth', shelfWidth);
-                console.log('shelfHeight', shelfHeight);
-                console.log('shelfTopPercent', shelfTopPercent);
-                console.log('shelfLeftPercent', shelfLeftPercent);
-                console.log('shelfWidthPercent', shelfWidthPercent);
-                console.log('shelfHeightPercent', shelfHeightPercent);
-
                 modal.find('.top').val(shelfTopPercent);
                 modal.find('.left').val(shelfLeftPercent);
                 modal.find('.width').val(shelfWidthPercent);
@@ -228,7 +219,6 @@ $(function(){
         $('#product-modal').on('hide.bs.modal', function (e) {
             shelf.cancelSelection();
         });
-
     });
 
     const formActions = {
@@ -270,6 +260,56 @@ $(function(){
 
                 modal.modal('show');
             });
+    });
+
+    $(document).on('click', 'button.product-upload', function (event) {
+        $('input.product-upload').click();
+    });
+
+    $('input.product-upload').change(function (event) {
+
+
+        let file_data =  $('input.product-upload').prop('files')[0];
+        let form_data = new FormData();
+        form_data.append('file', file_data);
+        $.ajax({
+            url: '/product/upload', // point to server-side PHP script
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            type: 'post',
+        }).done((response) => {
+            console.log(response);
+        });
+
+        form.trigger("reset");
+    });
+
+    $(document).on('click', 'button.board-upload', function (event) {
+        $('input.board-upload').click();
+    });
+
+    $('input.board-upload').change(function (event) {
+
+        let file_data =  $('input.board-upload').prop('files')[0];
+        let form_data = new FormData();
+        form_data.append('board', file_data);
+
+        // $('input.board-upload')
+        $.ajax({
+            url: '/board/upload', // point to server-side PHP script
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            type: 'post',
+        }).done((response) => {
+            console.log(response);
+
+            // form.trigger("reset");
+            // location.reload();
+        });
     });
 
     //save product

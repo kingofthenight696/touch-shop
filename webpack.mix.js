@@ -27,6 +27,7 @@ mix.js('resources/js/app.js', 'public/js')
 
     .copy('resources/plugins/tooltipster', 'public/plugins/tooltipster')
     .copy('node_modules/bootstrap/dist/js/bootstrap.min.js', 'public/js/bootstrap.min.js')
+    .copy('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js', 'public/js/bootstrap.bundle.min.js')
     .copy('resources/js/shelfshop.js', 'public/js/shelfshop.js')
     .copy('resources/js/utils.js', 'public/js/utils.js')
 

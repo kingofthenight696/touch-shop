@@ -1,16 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="shelf" data-board-id="{{$board->id}}">
     <div class="shelf__image">
-        <img id="board" src="img/boards/shelf-low.jpg" data-full-src="img/boards/shelf.jpg">
+        <img id="board" src="{{ asset('img/boards/'.$board->path) }}" data-full-src="{{ asset('img/boards/'.$board->path) }}">
+
     </div>
     <div class="shelf__zoom">
         <i class="shelf__zoom-button shelf__zoom-plus fas fa-search-plus"></i>
         <i class="shelf__zoom-button shelf__zoom-minus fas fa-search-minus"></i>
     </div>
 </div>
-
 
 <div class="tooltip_templates">
     <div class="shelf__tooltip__content" data-tooltip-base="true">
@@ -26,11 +27,44 @@
     </div>
 </div>
 
+<div class="container marketing">
+    <div class="row">
+        <div class="mr-auto"></div>
+        <div class="btn-group mt-3" role="group" aria-label="Basic example">
+            <a href="{{route('downloadProduct')}}" download class="btn btn-primary product-search" ><i class="fa fa-download mr-1"></i>Download products</a>
+            <form action="{{route('uploadProduct')}}" class="product-upload" method="post" enctype="multipart/form-data">
+                <input class="product-upload" type='file' hidden/>
+                <button type="button" class="btn btn-primary product-upload"><i class="fa fa-upload mr-1"></i>Upload products</button>
+            </form>
+            <form action="{{route('uploadBoard')}}" class="board-upload" method="post" enctype="multipart/form-data">
+                <input class="board-upload" type='file' hidden/>
+                <button type="button" class="btn btn-primary board-upload"><i class="fa fa-upload mr-1"></i>Upload board image</button>
+            </form>
+        </div>
+
+{{--        <div class="dropdown mt-3">--}}
+{{--            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+{{--                Dropdown button--}}
+{{--            </button>--}}
+{{--            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">--}}
+{{--                    <a href="{{route('downloadProduct')}}" download class=" product-search" ><i class="fa fa-download mr-1"></i>Download products</a>--}}
+{{--                    <form action="{{route('uploadProduct')}}" class="product-upload" method="post" enctype="multipart/form-data">--}}
+{{--                        <input class="product-upload" type='file' hidden/>--}}
+{{--                        <button type="button" class="btn btn-primary product-upload"><i class="fa fa-upload mr-1"></i>Upload products</button>--}}
+{{--                    </form>--}}
+{{--                    <form action="{{route('uploadProduct')}}" class="board-upload" method="post" enctype="multipart/form-data">--}}
+{{--                        <input class="board-upload" type='file' hidden/>--}}
+{{--                        <button type="button" class="btn btn-primary board-upload"><i class="fa fa-upload mr-1"></i>Upload board image</button>--}}
+{{--                    </form>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+    </div>
+</div>
 @if(!empty($board) && (!$board->products->isEmpty()))
     <div class="container marketing">
         <div class="row">
 
-            <table class="table table-hover mt-5">
+            <table class="table table-hover mt-3">
                 <thead>
                 <tr>
                     <th scope="col">Title</th>
