@@ -11,7 +11,8 @@ var ShelfShop = {};
             ShelfShop.initShelf();
 
             //If it's not mobile, initializing the pan and zoom feature
-            // if(!Utils.isMobile()) ShelfShop.initPanZoom();
+            // if(!Utils.isMobile())
+            // ShelfShop.initPanZoom();
 
             //Initializing the products markup and tooltips
             ShelfShop.initProductsTooltips();
@@ -189,6 +190,7 @@ $(function(){
         handles: true,
         onSelectEnd: function (img, selection) {
 
+            console.log(selection);
             const shelfTopPercent =  selection.y1 * 100 / shelfHeight;
             const shelfLeftPercent =  selection.x1 * 100 / shelfWidth;
 
@@ -303,12 +305,14 @@ $(function(){
 
             let productId = $(this).data('product-id');
 
-            $(`.shelf__product.product-${productId}`).trigger(e.type).addClass('shelf-product-hover');
+            $(`.shelf__product.product-${productId}`).trigger(e.type)
+                .addClass('shelf-product-hover');
         },
         function(e){
             let productId = $(this).data('product-id');
 
-            $(`.shelf__product.product-${productId}`).trigger(e.type).removeClass('shelf-product-hover');
+            $(`.shelf__product.product-${productId}`).trigger(e.type)
+                .removeClass('shelf-product-hover');
         });
 
     ShelfShop.init();
