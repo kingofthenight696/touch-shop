@@ -207,6 +207,11 @@ $(function(){
             modal.find('.board-id').val(board_id);
             form.data('action', 'add');
 
+            console.log('shelfTopPercent', shelfTopPercent);
+            console.log('shelfLeftPercent', shelfLeftPercent);
+            console.log('shelfWidthPercent', shelfWidthPercent);
+            console.log('shelfHeightPercent', shelfHeightPercent);
+
             modal.find('.top').val(shelfTopPercent);
             modal.find('.left').val(shelfLeftPercent);
             modal.find('.width').val(shelfWidthPercent);
