@@ -181,8 +181,9 @@ var ShelfShop = {};
 
 $(function(){
 
-    let shelfWidth = $('img#board').width();
-    let shelfHeight = $('img#board').height();
+    let shelfElement = $('img#board');
+    let shelfWidth = shelfElement.width();
+    let shelfHeight = shelfElement.height();
 
 
     let shelf = $('img#board').imgAreaSelect({
@@ -207,6 +208,8 @@ $(function(){
             modal.find('.board-id').val(board_id);
             form.data('action', 'add');
 
+            console.log('shelfWidth', shelfWidth);
+            console.log('shelfHeight', shelfHeight);
             console.log('shelfTopPercent', shelfTopPercent);
             console.log('shelfLeftPercent', shelfLeftPercent);
             console.log('shelfWidthPercent', shelfWidthPercent);
