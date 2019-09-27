@@ -21,12 +21,10 @@
     <link href="{{asset('plugins/imageareaselect/css/imgareaselect-animated.css')}}" rel="stylesheet">
 
     <script src="{{asset('js/jquery.min.js')}}"></script>
-{{--    <script src="{{asset('js/bootstrap.min.js')}}"></script>--}}
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('js/panzoom.js')}}"></script>
     <script src="{{asset('plugins/tooltipster/js/tooltipster.bundle.min.js')}}"></script>
     <script src="{{asset('js/utils.js')}}"></script>
-{{--    <script src="{{asset('js/popover.min.js')}}"></script>--}}
     <script  type="text/javascript"  src="{{asset('plugins/imageareaselect/scripts/jquery.imgareaselect.pack.js')}}"></script>
 
 
@@ -47,9 +45,6 @@
     </script>
 
 
-
-    <!-- Styles -->
-{{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
 </head>
 <body>
     <div id="app">

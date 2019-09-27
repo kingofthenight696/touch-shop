@@ -268,9 +268,9 @@ $(function(){
 
     $('input.product-upload').change(function (event) {
 
-
         let file_data =  $('input.product-upload').prop('files')[0];
         let form_data = new FormData();
+        let form = $('form.product-upload');
         form_data.append('file', file_data);
         $.ajax({
             url: '/product/upload', // point to server-side PHP script
@@ -281,9 +281,8 @@ $(function(){
             type: 'post',
         }).done((response) => {
             console.log(response);
+            form.trigger("reset");
         });
-
-        form.trigger("reset");
     });
 
     $(document).on('click', 'button.board-upload', function (event) {
@@ -307,8 +306,7 @@ $(function(){
         }).done((response) => {
             console.log(response);
 
-            // form.trigger("reset");
-            // location.reload();
+            location.reload();
         });
     });
 

@@ -5,8 +5,10 @@ namespace App\Http\Controllers\AdminSide;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddProductRequest;
 use App\Http\Resources\ProductResource;
+use App\Models\Board;
 use App\Models\Product;
-use Illuminate\Support\Facades\Request;
+use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -82,7 +84,12 @@ class ProductController extends Controller
     public function download()
     {
         $fileName = time() . '_datafile.json';
-        $content = Product::all();
+        $content = Product::get([
+            'coordinates',
+            'title',
+            'description',
+            'price',
+        ]);
 
         Storage::disk('local')->put($fileName, $content);
 
@@ -94,23 +101,38 @@ class ProductController extends Controller
 
     public function upload(Request $request)
     {
-            dd($_FILES);
-//        if ($request->hasFile('banners')) {
-//
-//            $data = json_decode($request->payload, true);
-//            $rules = [
-//                'name' => 'digits:8', //Must be a number and length of value is 8
-//                'age' => 'digits:8'
-//            ];
-//
-//            $validator = Validator::make($data, $rules);
-//            if ($validator->passes()) {
-//                //TODO Handle your data
-//            } else {
-//                //TODO Handle your error
-//                dd($validator->errors()->all());
-//            }
-//        }
-        return $request;
+        $result = false;
+        if ($request->hasFile('file')) {
+
+            $file = $request->file('file');
+
+            if($file->isReadable()) {
+                $res = $file->openFile('r');
+                $contents = $res->fread($res->getSize());
+
+                $json = json_decode($contents, true);
+
+                $board = Board::first();
+                foreach ($json as &$item){
+                    $item['coordinates'] = json_encode($item['coordinates']);
+                    $item['board_id'] = $board->id;
+                }
+
+                Product::insert($json);
+                $result = true;
+            } else {
+                throw new Exception('File is not readable');
+            }
+        }
+
+        return $result
+            ? response()->json([
+                'status' => true,
+                'msg' => 'success'
+            ])
+            : response()->json([
+                'status' => false,
+                'msg' => 'fail'
+            ]);
     }
 }
