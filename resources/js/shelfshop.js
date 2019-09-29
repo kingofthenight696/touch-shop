@@ -164,8 +164,6 @@ var ShelfShop = {};
          */
         initPanZoom : function()
         {
-
-
             const shelf = $('.shelf');
             const shelfElement = shelf[0];
             const shelfImage = $('.shelf__image');

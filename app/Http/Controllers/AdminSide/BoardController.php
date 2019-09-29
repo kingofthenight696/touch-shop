@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Board;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image as Image;
 
 class BoardController extends Controller
 {
@@ -16,13 +17,25 @@ class BoardController extends Controller
         {
             $file = $request->file('board');
             $extension = $file->getClientOriginalExtension(); // getting image extension
-            $filename = time().'.'.$extension;
+            $sold = time();
+            $filename = $sold.'.'.$extension;
+            $res = Storage::disk('public')->putFileAs('boards', $file, $filename);
 
-            Storage::disk('public')->putFileAs('boards', $file, $filename);
+            $image = Image::make(
+                Storage::disk('public')->get($res)
+            )->encode('jpg', 50);
+
+            $previewFilename = 'preview_'.$filename;
+
+            Storage::disk('public')->put('boards/'.$previewFilename, $image);
 
             $board = Board::first();
-            $board->path = $filename;
-            $result = $board->save();
+            $board->update([
+                'image' => $filename,
+                'preview' => $previewFilename,
+                ]);
+
+            $result = true;
         }
 
         return ($result)

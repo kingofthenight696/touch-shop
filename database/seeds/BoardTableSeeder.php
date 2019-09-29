@@ -20,7 +20,8 @@ class BoardTableSeeder extends Seeder
 
             Board::create(
                 [
-                    'path' => 'shelf.jpg',
+                    'image' => 'shelf.jpg',
+                    'preview' => 'shelf.jpg',
                     'author_id' => $editorId,
                     'last_editor_id' => $editorId
                 ]

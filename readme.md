@@ -89,6 +89,11 @@ Install dependencies **in console**:
 npm install
 ```
 
+Make public storage link **in console**:
+```
+php artisan storage:link
+```
+
 Make frontend **in console**:
 ```
 npm run build

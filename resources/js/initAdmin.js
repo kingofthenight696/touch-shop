@@ -180,7 +180,7 @@ var ShelfShop = {};
 
 
 $(function(){
-
+    console.log(11122);
     $('img#board').one('load',function() {
 
         let shelfElement = $('img#board');
@@ -192,6 +192,7 @@ $(function(){
             handles: true,
             onSelectEnd: function (img, selection) {
 
+                console.log(111);
                 const shelfTopPercent =  selection.y1 * 100 / shelfHeight;
                 const shelfLeftPercent =  selection.x1 * 100 / shelfWidth;
 
@@ -295,7 +296,6 @@ $(function(){
         let form_data = new FormData();
         form_data.append('board', file_data);
 
-        // $('input.board-upload')
         $.ajax({
             url: '/board/upload', // point to server-side PHP script
             cache: false,
@@ -304,8 +304,6 @@ $(function(){
             data: form_data,
             type: 'post',
         }).done((response) => {
-            console.log(response);
-
             location.reload();
         });
     });

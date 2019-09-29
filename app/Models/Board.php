@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Board extends Model
 {
     protected $fillable = [
-        'path',
+        'image',
+        'preview',
         'author_id',
         'last_editor_id',
         'created_at',
