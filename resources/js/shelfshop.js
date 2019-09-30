@@ -276,7 +276,6 @@ var ShelfShop = {};
 
             $.post('/cart/add', {'product_id': productId, 'quantity': count})
                 .done(function(response){
-                    counter.val(count);
                     updateCart(response);
                 });
         }
@@ -300,7 +299,7 @@ var ShelfShop = {};
         const url = '/cart/remove/';
 
         $.post(`${url}${productId}`)
-            .done(function(response){
+            .then(function(response){
                 location.reload();
             });
     });

@@ -287,7 +287,6 @@ $(function(){
             data: form_data,
             type: 'post',
         }).done((response) => {
-            console.log(response);
             form.trigger("reset");
         });
     });
