@@ -17,7 +17,6 @@ class CartService
     public function __construct(Request $request, Cart $cart)
     {
         $this->product_id = $request->product_id;
-        $this->product_id = $request->product_id;
         $this->quantity = $request->quantity ?? 1;
         $this->cart = $cart;
 

@@ -10,6 +10,7 @@
                         <th scope="col">Title</th>
                         <th scope="col" class="text-center">Qty</th>
                         <th scope="col">Price</th>
+                        <th scope="col" class="text-right">Remove</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -24,6 +25,12 @@
                                 </div>
                             </td>
                             <td>{{$cartItem->price}}</td>
+                            <td class="text-right">
+                                <span
+                                    data-product-id="{{$cartItem->id}}"
+                                    class="cart-action bg-dark "><i class="fa fa-trash"></i>
+                                </span>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

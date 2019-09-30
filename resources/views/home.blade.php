@@ -42,22 +42,6 @@
             </form>
         </div>
 
-{{--        <div class="dropdown mt-3">--}}
-{{--            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
-{{--                Dropdown button--}}
-{{--            </button>--}}
-{{--            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">--}}
-{{--                    <a href="{{route('downloadProduct')}}" download class=" product-search" ><i class="fa fa-download mr-1"></i>Download products</a>--}}
-{{--                    <form action="{{route('uploadProduct')}}" class="product-upload" method="post" enctype="multipart/form-data">--}}
-{{--                        <input class="product-upload" type='file' hidden/>--}}
-{{--                        <button type="button" class="btn btn-primary product-upload"><i class="fa fa-upload mr-1"></i>Upload products</button>--}}
-{{--                    </form>--}}
-{{--                    <form action="{{route('uploadProduct')}}" class="board-upload" method="post" enctype="multipart/form-data">--}}
-{{--                        <input class="board-upload" type='file' hidden/>--}}
-{{--                        <button type="button" class="btn btn-primary board-upload"><i class="fa fa-upload mr-1"></i>Upload board image</button>--}}
-{{--                    </form>--}}
-{{--            </div>--}}
-{{--        </div>--}}
     </div>
 </div>
 @if(!empty($board) && (!$board->products->isEmpty()))

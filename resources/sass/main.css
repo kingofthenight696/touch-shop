@@ -203,10 +203,22 @@ body{
 .modal{
  z-index: 9999999999;
 }
-/*
-////
- */
-
+.cart-action{
+    cursor: pointer;
+    display: inline-block;
+    color: white;
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 50%;
+}
+.cart-action:hover{
+    background-color: #717fe0 !important;
+}
+.cart-action i{
+    margin-top: 7px;
+}
 .qty .count {
     color: #000;
     display: inline-block;

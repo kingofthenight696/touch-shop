@@ -258,4 +258,17 @@ var ShelfShop = {};
           $('.user-cart span').text(cart.total_quantity);
     }
 
+    $('.remove-cart-item').click(function (e) {
+        $('.remove-cart-modal').modal('show');
+    });
+
+    $('.remove-cart-item-yes').click(function (e) {
+        const productId = $(this).data('product-id');
+        const url = '/cart/remove/';
+
+        $.post(`${url}${productId}`)
+            .done(function(response){});
+        location.reload();
+    })
+
 }(jQuery);
