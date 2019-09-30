@@ -3,6 +3,7 @@
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
@@ -43,9 +44,13 @@ class CartService
     {
         $cart = $this->checkUnexistingCart();
 
+        Log::info(print_r($cart, true));
+
         $item = $cart->whereHas('cartItems', function ($query) {
             $query->where('product_id', $this->product_id);
         })->with(['cartItems'])->first();
+
+       Log::info(print_r($item, true));
 
         if ($item) {
             return $item->cartItems()->where('product_id', $this->product_id)->update(['quantity' => $this->quantity]);
