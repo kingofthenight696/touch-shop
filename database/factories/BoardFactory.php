@@ -11,7 +11,8 @@ $factory->define(Board::class, function (Faker $faker, $attributes) {
     $userId = User::adminRole()->first()->id;
 
     return [
-        'path' => $attributes['path'] ?? '',
+        'image' => $attributes['image'] ?? '',
+        'preview' => $attributes['preview'] ?? '',
         'author_id' => $attributes['author_id'] ?? $userId,
         'last_editor_id' => $attributes['last_editor_id'] ?? $userId,
     ];

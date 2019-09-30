@@ -4,15 +4,13 @@
 
 <div class="shelf" data-board-id="{{$board->id}}">
     <div class="shelf__image">
-        <img id="board" src="img/boards/shelf-low.jpg" data-full-src="{{ asset('storage/boards/'.$board->path) }}">
-
+        <img id="board"  src="{{ asset('storage/boards/'.$board->preview) }}" data-full-src="{{ asset('storage/boards/'.$board->image) }}">
     </div>
     <div class="shelf__zoom">
         <i class="shelf__zoom-button shelf__zoom-plus fas fa-search-plus"></i>
         <i class="shelf__zoom-button shelf__zoom-minus fas fa-search-minus"></i>
     </div>
 </div>
-
 <div class="tooltip_templates">
     <div class="shelf__tooltip__content" data-tooltip-base="true">
         <h3 class="shelf__tooltip__text"></h3>
