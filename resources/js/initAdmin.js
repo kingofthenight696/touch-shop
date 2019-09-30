@@ -14,6 +14,14 @@ var ShelfShop = {};
             // if(!Utils.isMobile())
             // ShelfShop.initPanZoom();
 
+            if(!Utils.isMobile()){
+                $(document).on('mouseover', '.shelf__product', function() {
+                    $(this).addClass('shelf-product-hover-big')
+                }).on('mouseleave', '.shelf__product', function() {
+                    $(this).removeClass('shelf-product-hover-big')
+                });
+            }
+
             //Initializing the products markup and tooltips
             ShelfShop.initProductsTooltips();
         },
@@ -180,7 +188,6 @@ var ShelfShop = {};
 
 
 $(function(){
-    console.log(11122);
     $('img#board').one('load',function() {
 
         let shelfElement = $('img#board');
