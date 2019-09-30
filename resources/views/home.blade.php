@@ -111,15 +111,15 @@
                     <input type="number" hidden name="board_id" class="board-id">
                     <div class="input-group mb-3">
                         <label for="product-title">Product title</label>
-                        <input id="product-title" type="text" name="title" class="product-title form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1">
+                        <input id="product-title" required type="text" name="title" class="product-title form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group mb-3">
                         <label for="product-description">Product description</label>
-                        <input id="product-description" type="text" name="description" class="product-description form-control" placeholder="Description" aria-label="Description" aria-describedby="basic-addon1">
+                        <input id="product-description" required type="text" name="description" class="product-description form-control" placeholder="Description" aria-label="Description" aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group mb-3">
                         <label for="product-price">Product price</label>
-                        <input id="product-price" type="number" name="price" step="0.01" min="0" class="product-price form-control" placeholder="Price" aria-label="Price" aria-describedby="basic-addon1">
+                        <input id="product-price" required type="number" name="price" step="0.01" min="1" value="1.00" class="product-price form-control" placeholder="Price" aria-label="Price" aria-describedby="basic-addon1">
                     </div>
                 </form>
             </div>

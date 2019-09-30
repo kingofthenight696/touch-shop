@@ -363,5 +363,36 @@ $(function(){
                 .removeClass('shelf-product-hover');
         });
 
+    $("form.product-form").validate({
+        rules: {
+            'title': {
+                required: true,
+                minlength: 3
+            },
+            'description': {
+                required: true,
+                minlength: 1
+            },
+            'price': {
+                required: true,
+                minlength: 1
+            },
+        },
+        messages: {
+            'title': {
+                required: "Please enter some data",
+                minlength: "Your data must be at least 8 characters"
+            },
+            'description': {
+                required: "Please enter some data",
+                minlength: "Your data must be at least 8 characters"
+            },
+            'price': {
+                required: "Please enter some data",
+                minlength: "Your data must be at least 8 characters"
+            },
+        }
+    });
+
     ShelfShop.init();
 });

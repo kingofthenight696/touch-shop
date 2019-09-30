@@ -31,6 +31,8 @@ mix.js('resources/js/app.js', 'public/js')
     .copy('resources/js/shelfshop.js', 'public/js/shelfshop.js')
     .copy('resources/js/utils.js', 'public/js/utils.js')
 
+    .copy('node_modules/jquery-validation/dist/jquery.validate.min.js', 'public/js/jquery.validate.min.js')
+
     .copy('resources/plugins/imageareaselect', 'public/plugins/imageareaselect')
     .copy('resources/js/initAdmin.js', 'public/js/initAdmin.js')
 

@@ -21,6 +21,7 @@
     <link href="{{asset('plugins/imageareaselect/css/imgareaselect-animated.css')}}" rel="stylesheet">
 
     <script src="{{asset('js/jquery.min.js')}}"></script>
+    <script src="{{asset('js/jquery.validate.min.js')}}"></script>
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('js/panzoom.js')}}"></script>
     <script src="{{asset('plugins/tooltipster/js/tooltipster.bundle.min.js')}}"></script>
