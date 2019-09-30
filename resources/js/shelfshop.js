@@ -154,10 +154,12 @@ var ShelfShop = {};
                     productMarkup.tooltipster({
                         trigger: 'custom',
                         triggerOpen: {
-                            click: true
+                            originClick: true,
+                            click: true,
+                            mouseenter: true
                         },
                         triggerClose: {
-                            click: true,
+                            mouseleave: true,
                         },
                         interactive: true,
                         contentAsHTML : true,
