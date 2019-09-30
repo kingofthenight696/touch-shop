@@ -338,7 +338,7 @@ $(function(){
         let productId = $(this).data('product-id');
 
         $.post(`/product/delete/${productId}`)
-            .then((response) =>{
+            .then((response) => {
                 $('#product-remove-modal').modal('hide');
         });
         location.reload();

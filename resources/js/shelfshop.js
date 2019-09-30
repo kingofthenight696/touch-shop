@@ -242,13 +242,21 @@ var ShelfShop = {};
     $(document).on('click','.minus', function(){
         let counter = $(this).parent().find('input');
         let count  =  parseInt(counter.val()) ;
-        count--;
-        let product_id  =  $(this).parent().find('input').data('product_id');
-        $.post('/cart/add', {'product_id': product_id, 'quantity': count})
-            .done(function(response){
-                counter.val(count);
-                updateCart(response);
-            });
+        let productId  =  $(this).parent().find('input').data('product_id');
+
+        if(count === 1){
+            const modal = $('#cart-item-remove-modal');
+            modal.find('.cart-item-remove-yes').data('product-id', productId);
+            modal.modal('show');
+        }else{
+            count--;
+
+            $.post('/cart/add', {'product_id': productId, 'quantity': count})
+                .done(function(response){
+                    counter.val(count);
+                    updateCart(response);
+                });
+        }
     });
 
     function updateCart(cart) {
@@ -256,16 +264,21 @@ var ShelfShop = {};
           $('.user-cart span').text(cart.total_quantity);
     }
 
-    $('.remove-cart-item').click(function (e) {
-        $('.remove-cart-modal').modal('show');
+    $(document).on('click','.cart-item-remove', function(){
+        const productId = $(this).data('product-id');
+        const modal = $('#cart-item-remove-modal');
+
+        modal.find('.cart-item-remove-yes').data('product-id', productId);
+        modal.modal('show');
     });
 
-    $('.remove-cart-item-yes').click(function (e) {
+    $(document).on('click','.cart-item-remove-yes', function (e) {
         const productId = $(this).data('product-id');
         const url = '/cart/remove/';
 
         $.post(`${url}${productId}`)
-            .done(function(response){});
+            .done(function(response){
+            });
         location.reload();
     })
 

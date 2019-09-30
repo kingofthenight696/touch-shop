@@ -13,7 +13,7 @@
 <link href="{{ asset('css/main.css') }}" rel="stylesheet" >
 
 <script src="{{asset('js/jquery.min.js')}}"></script>
-<script src="{{asset('js/bootstrap.min.js')}}"></script>
+<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('js/panzoom.js')}}"></script>
 <script src="{{asset('plugins/tooltipster/js/tooltipster.bundle.min.js')}}"></script>
 <script src="{{asset('js/utils.js')}}"></script>

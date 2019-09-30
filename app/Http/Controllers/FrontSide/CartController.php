@@ -35,16 +35,16 @@ class CartController extends Controller
             return response()->json($exception);
         }
 
-        return response()->json(null, new CartResource($cartService->getCart()));
+        return response()->json(new CartResource($cartService->getCart()));
     }
 
-    public function removeCart(Request $request, $productId, CartService $cartService)
+    public function removeCart(Request $request, CartService $cartService)
     {
         try {
-            $cartService->removeCart($productId);
+            $cartService->removeCart();
         } catch (Exception $exception) {
             return response()->json($exception);
         }
-        return response()->json(null, new CartResource($cartService->getCart()));
+        return response()->json( new CartResource($cartService->getCart()));
     }
 }
