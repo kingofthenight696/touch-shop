@@ -199,7 +199,6 @@ $(function(){
             handles: true,
             onSelectEnd: function (img, selection) {
 
-                console.log(111);
                 const shelfTopPercent =  selection.y1 * 100 / shelfHeight;
                 const shelfLeftPercent =  selection.x1 * 100 / shelfWidth;
 

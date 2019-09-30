@@ -299,10 +299,10 @@ var ShelfShop = {};
         const productId = $(this).data('product-id');
         const url = '/cart/remove/';
 
-        console.log(productId);
         $.post(`${url}${productId}`)
-            .done(function(response){});
-        location.reload();
+            .done(function(response){
+                location.reload();
+            });
     });
 
 }(jQuery);
