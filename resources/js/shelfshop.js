@@ -276,6 +276,7 @@ var ShelfShop = {};
 
             $.post('/cart/add', {'product_id': productId, 'quantity': count})
                 .done(function(response){
+                    counter.val(count);
                     updateCart(response);
                 });
         }
