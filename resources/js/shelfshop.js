@@ -298,10 +298,18 @@ var ShelfShop = {};
         const productId = $(this).data('product-id');
         const url = '/cart/remove/';
 
-        $.post(`${url}${productId}`)
-            .then(function(response){
+        $.ajax({
+            url: `${url}${productId}`, // point to server-side PHP script
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'post',
+        })
+            .done(function(response){
                 location.reload();
-            });
+            }).catch((e) => {
+                console.log(e);
+        });
     });
 
 }(jQuery);
