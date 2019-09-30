@@ -42,10 +42,7 @@ class CartService
 
     public function changeCartItemQuantity()
     {
-        Log::info('start');
         $cart = $this->checkUnexistingCart();
-        Log::info('1');
-        Log::info(print_r($cart->toArray(), true));
 
         $item = $cart->whereHas('cartItems', function ($query) {
             $query->where('product_id', $this->product_id);
@@ -56,12 +53,9 @@ class CartService
 
             return $res;
         }
-
-        Log::info('3');
         $product = Product::find($this->product_id);
 
-        Log::info('4');
-        $result = $cart->cartItems()->create(
+        $cart->cartItems()->create(
             [
                 'product_id' => $product->id,
                 'board_id' => $product->board_id,
@@ -71,8 +65,6 @@ class CartService
             ]
         );
 
-       Log::info($result);
-        Log::info('finish');
         return true;
     }
 
