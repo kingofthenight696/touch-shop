@@ -44,9 +44,8 @@ class CartService
     {
         $cart = $this->checkUnexistingCart();
 
-        $item = $cart->whereHas('cartItems', function ($query) {
-            $query->where('product_id', $this->product_id);
-        })->with(['cartItems'])->first();
+        $item = $cart->cartItems()->where('product_id', $this->product_id)->exists();
+
 
         if ($item) {
             $res = $item->cartItems()->where('product_id', $this->product_id)->update(['quantity' => $this->quantity]);
