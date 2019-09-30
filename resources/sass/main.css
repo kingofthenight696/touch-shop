@@ -196,6 +196,9 @@ body{
 .shelf-product-hover{
     border: 1px solid #02ff7d;
 }
+.shelf-product-hover-big{
+    border: 2px solid #02ff7d !important;
+}
 .input-group>.form-control{
      width: 100%;
 }

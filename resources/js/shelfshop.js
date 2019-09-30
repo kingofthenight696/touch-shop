@@ -14,6 +14,14 @@ var ShelfShop = {};
             // if(!Utils.isMobile())
                 ShelfShop.initPanZoom();
 
+            if(!Utils.isMobile()){
+                $(document).on('mouseover', '.shelf__product', function() {
+                    $(this).addClass('shelf-product-hover-big')
+                }).on('mouseleave', '.shelf__product', function() {
+                    $(this).removeClass('shelf-product-hover-big')
+                });
+            }
+
             //Initializing the products markup and tooltips
             ShelfShop.initProductsTooltips();
         },
@@ -154,7 +162,6 @@ var ShelfShop = {};
                     productMarkup.tooltipster({
                         trigger: 'custom',
                         triggerOpen: {
-                            originClick: true,
                             click: true,
                             mouseenter: true
                         },
@@ -295,6 +302,6 @@ var ShelfShop = {};
         $.post(`${url}${productId}`)
             .done(function(response){});
         location.reload();
-    })
+    });
 
 }(jQuery);
