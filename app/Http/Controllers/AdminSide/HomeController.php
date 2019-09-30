@@ -31,6 +31,6 @@ class HomeController extends Controller
             }
         ])->first();
 
-        return view('home', compact('board'));
+        return view('pages.admin-side.dashboard', compact('board'));
     }
 }
