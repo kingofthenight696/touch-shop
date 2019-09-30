@@ -254,7 +254,8 @@ var ShelfShop = {};
         let counter = $(this).parent().find('input');
         let count  =  parseInt(counter.val()) ;
         count++;
-        let product_id  =  $(this).parent().find('input').data('product_id');
+        let product_id  =  $(this).parent().find('input').data('product-id');
+
         $.post('/cart/add', {'product_id': product_id, 'quantity': count})
             .done(function(response){
                 counter.val(count);
