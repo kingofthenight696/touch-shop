@@ -81,6 +81,7 @@ var ShelfShop = {};
                     height : product.coordinates.height + '%',
                     width : product.coordinates.width + '%'
                 });
+
                 shelfImage.append(productMarkup);
 
                 //Creating the tooltip markup
@@ -94,20 +95,32 @@ var ShelfShop = {};
                 tooltipLink.attr('href', cartBaseUrl);
                 tooltipLink.data('product_id', product.id);
 
-                //Async functionality to add to cart
-                const cart = $('.user-cart');
-                const cartItems = cart.find('span');
-                tooltipLink.on('click', function(){
-                    tooltipLink.addClass('button--ajax-loading');
-                    $.post(tooltipLink.attr('href'), {'product_id': product.id, 'quantity': 1} )
-                        .done(function(response){
-                            cartItems.text(cartItems.text() * 1 + 1);
-                        })
-                        .always(function(){
-                            tooltipLink.removeClass('button--ajax-loading');
-                        });
-                    return false;
-                });
+                if( cart  && !!cart.cart_items.find(cartItem => product.id === cartItem.product_id)){
+
+                    tooltipLink.attr("disabled", true).removeAttr("href");
+                    tooltipLink.removeClass('button--green').addClass('btn-secondary');
+                    tooltipLink.find('span').text('Already in cart')
+                }else{
+                    tooltipLink.on('click', function(){
+                        tooltipLink.addClass('button--ajax-loading');
+                        $.post(tooltipLink.attr('href'), {'product_id': product.id, 'quantity': 1} )
+                            .done(function(response){
+
+                                //Async functionality to add to cart
+                                const cartSelector = $('.user-cart');
+                                const cartSelectorItems = cartSelector.find('span');
+
+                                cartSelectorItems.text(response.total_quantity);
+                                tooltipLink.attr("disabled", true);
+                                tooltipLink.removeClass('button--green').addClass('btn btn-secondary');
+                                tooltipLink.find('span').text('Already in cart')
+                            })
+                            .always(function(){
+                                tooltipLink.removeClass('button--ajax-loading');
+                            });
+                        return false;
+                    });
+                }
 
                 if(Utils.isMobile())
                 {
@@ -242,7 +255,7 @@ var ShelfShop = {};
     $(document).on('click','.minus', function(){
         let counter = $(this).parent().find('input');
         let count  =  parseInt(counter.val()) ;
-        let productId  =  $(this).parent().find('input').data('product_id');
+        let productId  =  $(this).parent().find('input').data('product-id');
 
         if(count === 1){
             const modal = $('#cart-item-remove-modal');
@@ -276,9 +289,9 @@ var ShelfShop = {};
         const productId = $(this).data('product-id');
         const url = '/cart/remove/';
 
+        console.log(productId);
         $.post(`${url}${productId}`)
-            .done(function(response){
-            });
+            .done(function(response){});
         location.reload();
     })
 

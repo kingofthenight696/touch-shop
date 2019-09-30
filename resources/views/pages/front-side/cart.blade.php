@@ -20,14 +20,14 @@
                             <td>
                                 <div class="qty">
                                     <span class="minus bg-dark">-</span>
-                                    <input type="number" class="count" name="qty" value="{{$cartItem->quantity}}" data-product_id="{{$cartItem->product_id}}">
+                                    <input type="number" class="count" name="qty" value="{{$cartItem->quantity}}" data-product-id="{{$cartItem->product_id}}">
                                     <span class="plus bg-dark">+</span>
                                 </div>
                             </td>
                             <td>{{$cartItem->price}}</td>
                             <td class="text-right">
                                 <span
-                                    data-product-id="{{$cartItem->id}}"
+                                    data-product-id="{{$cartItem->product_id}}"
                                     class="cart-action bg-dark cart-item-remove">
                                     <i class="fa fa-trash"></i>
                                 </span>

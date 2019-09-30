@@ -27,6 +27,7 @@
     });
     @if(!empty($board))
     let board = @json($board);
+    let cart = @json($cart);
     @endif
 </script>
 
