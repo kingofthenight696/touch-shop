@@ -48,7 +48,7 @@ class CartService
 
 
         if ($item) {
-            $res = $item->cartItems()->where('product_id', $this->product_id)->update(['quantity' => $this->quantity]);
+            $res = $cart->cartItems()->where('product_id', $this->product_id)->update(['quantity' => $this->quantity]);
 
             return $res;
         }
